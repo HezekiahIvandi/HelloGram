@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Profile());
-}
-
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -28,35 +24,35 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: 54,
-                backgroundColor: Color(0xFF212832),
-                backgroundImage: NetworkImage(
-                  'https://images.pexels.com/photos/6977945/pexels-photo-6977945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                ),
-              ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Color(0xFFfed36a), // Change the color as needed
-                      width: 5.0,
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 54,
+                      backgroundColor: Color(0xFF212832),
+                      backgroundImage: NetworkImage(
+                        'https://images.pexels.com/photos/6977945/pexels-photo-6977945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                      ),
                     ),
-                  ),
-                    // =================================================================================
-                    // child: CircleAvatar(
-                    //   radius: 72,
-                    //   backgroundColor: Color(0xFF212832),
-                    //   backgroundImage: NetworkImage(
-                    //       'https://s.hdnux.com/photos/51/23/24/10827008/4/1200x0.jpg'
-                    //   ),
-                    // ),
-                    // ==================================================================================
+                    Container(
+                      padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color:
+                              Color(0xFFfed36a), // Change the color as needed
+                          width: 5.0,
+                        ),
+                      ),
+                      // =================================================================================
+                      // child: CircleAvatar(
+                      //   radius: 72,
+                      //   backgroundColor: Color(0xFF212832),
+                      //   backgroundImage: NetworkImage(
+                      //       'https://s.hdnux.com/photos/51/23/24/10827008/4/1200x0.jpg'
+                      //   ),
+                      // ),
+                      // ==================================================================================
                     )
                   ],
                 ),
@@ -77,7 +73,8 @@ class Profile extends StatelessWidget {
                         width: 200, // Set the width to 200
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.white, // Set the outline color to white
+                            color:
+                                Colors.white, // Set the outline color to white
                             width: 1.0, // Set the outline width as needed
                           ),
                         ),
@@ -88,12 +85,16 @@ class Profile extends StatelessWidget {
                             expands: true, // and this
                             keyboardType: TextInputType.multiline,
                             style: TextStyle(
-                              color: Colors.white, // Set the text color to white
+                              color:
+                                  Colors.white, // Set the text color to white
                             ),
-                            cursorColor: Colors.white, // Set the cursor color to white
+                            cursorColor:
+                                Colors.white, // Set the cursor color to white
                             decoration: InputDecoration(
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent), // Set the line color to transparent
+                                borderSide: BorderSide(
+                                    color: Colors
+                                        .transparent), // Set the line color to transparent
                               ),
                             ),
                           ),
@@ -103,7 +104,7 @@ class Profile extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: SizedBox(
                     width: 200,
                     height: 40,
@@ -124,8 +125,8 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child:SizedBox(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: SizedBox(
                     width: 200,
                     height: 40,
                     child: TextField(
@@ -139,11 +140,11 @@ class Profile extends StatelessWidget {
                         labelText: 'Email',
                         labelStyle: TextStyle(
                           color: Color(0xFFFFFFFF),
-                          ),
                         ),
                       ),
                     ),
                   ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: SizedBox(
@@ -152,14 +153,15 @@ class Profile extends StatelessWidget {
                     child: TextButton(
                       style: ButtonStyle(
                         foregroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF455A64)),
+                            MaterialStateProperty.all<Color>(Color(0xFF455A64)),
                         backgroundColor:
-                        MaterialStatePropertyAll(Color(0xFFfed36a)),
+                            MaterialStatePropertyAll(Color(0xFFfed36a)),
                       ),
-                      onPressed:() { },
+                      onPressed: () {},
                       child: Text(
                         'Setting',
-                        style: TextStyle(color: Color(0xFF000000),fontSize: 21),
+                        style:
+                            TextStyle(color: Color(0xFF000000), fontSize: 21),
                       ),
                     ),
                   ),
@@ -168,15 +170,13 @@ class Profile extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(130, 10, 0, 0),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.white,
-                        backgroundColor:  Color(0xFFfed36a)
-                    ),
-                    onPressed: () { },
+                        primary: Colors.white,
+                        backgroundColor: Color(0xFFfed36a)),
+                    onPressed: () {},
                     child: Text('Logout',
-                        style: TextStyle(color: Color(0xFF000000))
-                      ),
-                    ),
+                        style: TextStyle(color: Color(0xFF000000))),
                   ),
+                ),
               ],
             ),
           ),
