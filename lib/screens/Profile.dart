@@ -29,7 +29,6 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -101,13 +100,13 @@ class Profile extends StatelessWidget {
                             decoration: InputDecoration(
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors
-                                    .transparent), // Set the line color to transparent
-                              ),
-                            ),
+                                    .transparent), // Set the line color to transparen,
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    ),
+                    ),
                   ],
                 ),
                 Padding(
@@ -193,4 +192,3 @@ class Profile extends StatelessWidget {
       ),
     );
   }
-}
