@@ -5,6 +5,7 @@ import 'package:project_uts/responsive/webLayout.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/screens/Profile.dart';
+import 'package:project_uts/screens/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       //   mobileScreenLayout: MobileLayout(),
       //   webScreenLayout: WebLayout(),
       // ),
-      home: LogIn(),
+      home: Profile(),
     );
   }
 }
