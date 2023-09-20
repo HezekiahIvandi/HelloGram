@@ -35,6 +35,7 @@ dependencies:
   firebase_storage: ^11.2.6
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -50,6 +51,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/logo/vector/default-monochrome.svg
+  #   - images/a_dot_ham.jpeg
   assets:
     - assets/img/message.png
     - assets/img/muka.jpg
