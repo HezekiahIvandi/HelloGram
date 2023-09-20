@@ -4,6 +4,7 @@ import 'package:project_uts/responsive/renponsiveLayout.dart';
 import 'package:project_uts/responsive/webLayout.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/screens/log_in.dart';
+import 'package:project_uts/screens/Profile.dart';
 
 void main() {
   runApp(const MyApp());

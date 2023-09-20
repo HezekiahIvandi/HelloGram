@@ -1,0 +1,18 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: SportingGrotesque-Regular
+font link: https://velvetyne.fr/fonts/sporting-grotesque/
+font author: Lucas Le Bihan
+font author site: http://lucaslebihan.fr/
+
+
+icon designer: Denis
+icon designer link: /BL4CK_K1N6
+        
+
+fontColor: {"hex":"#FFC096"}
+bgColor: {"hex":"#212832"}
+iconColor: {"hex":"#FFC096"}
+
+      
