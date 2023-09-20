@@ -16,7 +16,7 @@ class _LogInState extends State<LogIn> {
         child: Center(
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(0, 160, 0, 50),
                 child: Text(
                   'HelloGram',
@@ -26,7 +26,7 @@ class _LogInState extends State<LogIn> {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: SizedBox(
                   width: 250,
@@ -47,7 +47,7 @@ class _LogInState extends State<LogIn> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 250,
                 height: 60,
                 child: TextField(
@@ -78,14 +78,14 @@ class _LogInState extends State<LogIn> {
                       backgroundColor: MaterialStatePropertyAll(yellow),
                     ),
                     onPressed: null,
-                    child: Text(
+                    child: const Text(
                       'Log In',
                       style: TextStyle(color: Color(0xFF000000)),
                     ),
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: Text(
                   "Don't have an account? Sign Up Here",
