@@ -53,11 +53,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo/vector/default-monochrome.svg
-  #   - images/a_dot_ham.jpeg
-  assets:
-    - assets/img/message.png
+    - assets/logo/vector/default-monochrome-white.svg
     - assets/img/muka.jpg
-    - assets/img/comment.png
+    - assets/img/istockphoto1.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
