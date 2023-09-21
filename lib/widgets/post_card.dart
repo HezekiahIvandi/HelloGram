@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project_uts/utils/colors.dart';
 
@@ -105,6 +107,61 @@ class PostCard extends StatelessWidget {
               ),
             ],
           ),
+
+          // Description
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '1.234 Likes',
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'username',
+                        ),
+                        TextSpan(
+                          text:
+                              '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    'View all comments',
+                    style: TextStyle(
+                      color: lightGrey,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    '21 September 2023',
+                    style: TextStyle(
+                      color: lightGrey,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

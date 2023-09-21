@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class responsiveLayout extends StatelessWidget {
+class ResponsiveLayout extends StatelessWidget {
   final Widget webScreenLayout;
   final Widget mobileScreenLayout;
-  const responsiveLayout({
+  const ResponsiveLayout({
     Key? key,
     required this.webScreenLayout,
     required this.mobileScreenLayout,

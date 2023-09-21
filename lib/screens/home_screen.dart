@@ -14,56 +14,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: mobileBackgroundColor,
-        centerTitle: false,
-        title: SvgPicture.asset(
-          'assets/logo/vector/default-monochrome.svg', // Logo
-          height: 28,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.message_outlined,
-              color: yellow,
+        appBar: AppBar(
+          backgroundColor: mobileBackgroundColor,
+          centerTitle: false,
+          title: SvgPicture.asset(
+            'assets/logo/vector/default-monochrome.svg', // Logo
+            height: 28,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.message_outlined,
+                color: yellow,
+              ),
             ),
-          ),
-        ],
-      ),
-      body: const PostCard(),
-
-      // Navigation TODO: Tambah Fungsinalitas Button
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.home_outlined),
-            color: yellow,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search_outlined),
-            color: yellow,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_box_outlined),
-            color: yellow,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none_outlined),
-            color: yellow,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person),
-            color: yellow,
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+        body: ListView(
+          children: const [
+            PostCard(),
+            PostCard(),
+            PostCard(),
+          ],
+        ));
   }
 }
