@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_uts/Profile.dart';
+import 'package:project_uts/screens/homescreen.dart';
 import 'package:project_uts/utils/colors.dart';
 
 import 'package:project_uts/screens/log_in.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       //   mobileScreenLayout: MobileLayout(),
       //   webScreenLayout: WebLayout(),
       // ),
-      home: Profile(),
+      home: HomeScreen(),
     );
   }
 }

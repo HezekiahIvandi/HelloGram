@@ -101,11 +101,11 @@ class Profile extends StatelessWidget {
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors
                                     .transparent), // Set the line color to transparen,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    ),
                     ),
                   ],
                 ),
@@ -192,3 +192,4 @@ class Profile extends StatelessWidget {
       ),
     );
   }
+}
