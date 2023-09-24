@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/colors.dart';
-import 'package:project_uts/widgets/textField.dart';
+import 'package:project_uts/widgets/text_field.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(child: Container(), flex: 2),
+              Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
                 'assets/logo/vector/default-monochrome.svg',
@@ -95,12 +95,6 @@ class _SignUpState extends State<SignUp> {
                   );
                 },
                 child: Container(
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -112,6 +106,12 @@ class _SignUpState extends State<SignUp> {
                     ),
                     color: yellow,
                   ),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
 
@@ -120,16 +120,16 @@ class _SignUpState extends State<SignUp> {
                 height: 12,
               ),
 
-              Flexible(child: Container(), flex: 2),
+              Flexible(flex: 2, child: Container()),
               //To sign up
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Have an account? "),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
+                    child: const Text("Have an account? "),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -141,14 +141,14 @@ class _SignUpState extends State<SignUp> {
                       );
                     },
                     child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
                       child: const Text(
                         "Log in.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
                       ),
                     ),
                   ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_uts/responsive/mobileLayout.dart';
-import 'package:project_uts/responsive/renponsiveLayout.dart';
-import 'package:project_uts/responsive/webLayout.dart';
+import 'package:project_uts/responsive/mobile_layout.dart';
+import 'package:project_uts/responsive/renponsive_layout.dart';
+import 'package:project_uts/responsive/web_layout.dart';
 import 'package:project_uts/screens/sign_up.dart';
 import 'package:project_uts/utils/colors.dart';
-import 'package:project_uts/widgets/textField.dart';
+import 'package:project_uts/widgets/text_field.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -36,7 +36,7 @@ class _LogInState extends State<LogIn> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(child: Container(), flex: 2),
+              Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
                 'assets/logo/vector/default-monochrome.svg',
@@ -112,16 +112,16 @@ class _LogInState extends State<LogIn> {
                 height: 12,
               ),
 
-              Flexible(child: Container(), flex: 2),
+              Flexible(flex: 2, child: Container()),
               //To sign up
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Don't have an account? "),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
+                    child: const Text("Don't have an account? "),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -133,14 +133,14 @@ class _LogInState extends State<LogIn> {
                       );
                     },
                     child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
                       child: const Text(
                         "Sign up.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
                       ),
                     ),
                   ),

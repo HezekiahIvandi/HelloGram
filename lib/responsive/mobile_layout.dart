@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_uts/screens/home_screen.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/utils/colors.dart';
 

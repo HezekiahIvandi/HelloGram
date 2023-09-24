@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:project_uts/utils/colors.dart';
 
@@ -115,7 +113,7 @@ class PostCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   '1.234 Likes',
                 ),
                 Container(
@@ -124,7 +122,7 @@ class PostCard extends StatelessWidget {
                     top: 8,
                   ),
                   child: RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                       children: [
                         TextSpan(
                           text: 'username',
@@ -141,7 +139,7 @@ class PostCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: 4,
                   ),
-                  child: Text(
+                  child: const Text(
                     'View all comments',
                     style: TextStyle(
                       color: lightGrey,
@@ -152,7 +150,7 @@ class PostCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: 4,
                   ),
-                  child: Text(
+                  child: const Text(
                     '21 September 2023',
                     style: TextStyle(
                       color: lightGrey,
