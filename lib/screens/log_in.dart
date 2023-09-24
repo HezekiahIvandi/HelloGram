@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_uts/responsive/mobileLayout.dart';
+import 'package:project_uts/responsive/renponsiveLayout.dart';
+import 'package:project_uts/responsive/webLayout.dart';
+import 'package:project_uts/screens/sign_up.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/textField.dart';
 
@@ -71,13 +75,18 @@ class _LogInState extends State<LogIn> {
 
               //login button
               InkWell(
-                child: Container(
-                  child: const Text(
-                    'Log in',
-                    style: TextStyle(
-                      color: Colors.black,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ResponsiveLayout(
+                        webScreenLayout: WebLayout(),
+                        mobileScreenLayout: MobileLayout(),
+                      ),
                     ),
-                  ),
+                  );
+                },
+                child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -88,6 +97,12 @@ class _LogInState extends State<LogIn> {
                       ),
                     ),
                     color: yellow,
+                  ),
+                  child: const Text(
+                    'Log in',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
@@ -109,9 +124,16 @@ class _LogInState extends State<LogIn> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUp(),
+                        ),
+                      );
+                    },
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         "Sign up.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

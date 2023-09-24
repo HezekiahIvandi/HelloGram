@@ -44,15 +44,15 @@ class _MobileLayoutState extends State<MobileLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        children: [
+        controller: pageController,
+        onPageChanged: onPageChanged,
+        children: const [
           HomeScreen(),
           Text('Search'),
           Text('Post'),
           Text('Notification'),
           Profile(),
         ],
-        controller: pageController,
-        onPageChanged: onPageChanged,
       ),
       bottomNavigationBar: NavigationBar(
         destinations: [
@@ -65,7 +65,7 @@ class _MobileLayoutState extends State<MobileLayout> {
           ),
           NavigationDestination(
             icon: Icon(
-              Icons.search_outlined,
+              Icons.search,
               color: _page == 1 ? yellow : lightGrey,
             ),
             label: '',
@@ -79,14 +79,14 @@ class _MobileLayoutState extends State<MobileLayout> {
           ),
           NavigationDestination(
             icon: Icon(
-              Icons.notifications_outlined,
+              Icons.notifications,
               color: _page == 3 ? yellow : lightGrey,
             ),
             label: '',
           ),
           NavigationDestination(
             icon: Icon(
-              Icons.person_outline,
+              Icons.person,
               color: _page == 4 ? yellow : lightGrey,
             ),
             label: '',
