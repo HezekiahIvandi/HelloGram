@@ -1,40 +1,57 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_uts/screens/Profile.dart';
 import 'package:project_uts/screens/home_screen.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/colors.dart';
 
-class MobileLayout extends StatelessWidget {
-  const MobileLayout({super.key});
 
+class MobileLayout extends StatefulWidget {
+  MobileLayout({super.key});
+
+  @override
+  _MobileLayout createState() => _MobileLayout();
+}
+
+class _MobileLayout extends State<MobileLayout>{
+   int index = 0;
+    //ADD screen di sini
+   final screens = [
+     Center(child: HomeScreen()),
+     Center(child: HomeScreen()),
+     Center(child: HomeScreen()),
+     Center(child: HomeScreen()),
+     Center(child: Profile()),
+   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: HomeScreen(),
-      ),
+      body: screens[index],
       bottomNavigationBar: NavigationBar(
+        height: 60,
+        selectedIndex: index,
+        onDestinationSelected: (index) =>
+          setState(() => this.index = index),
         destinations: [
           NavigationDestination(
             icon: Icon(
               Icons.home,
               color: yellow,
             ),
-            label: '',
+            label: 'Home',
           ),
           NavigationDestination(
             icon: Icon(
               Icons.search_outlined,
               color: yellow,
             ),
-            label: '',
+            label: 'Search',
           ),
           NavigationDestination(
             icon: Icon(
               Icons.add_circle,
               color: yellow,
             ),
-            label: '',
+            label: 'Post',
           ),
           NavigationDestination(
             icon: Icon(
@@ -48,11 +65,10 @@ class MobileLayout extends StatelessWidget {
               Icons.person_outline,
               color: yellow,
             ),
-            label: '',
+            label: 'Profile',
+
           ),
         ],
-        backgroundColor: mobileBackgroundColor,
-        indicatorColor: lightGrey,
       ),
     );
   }

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -39,8 +40,8 @@ class Profile extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color:
-                              Color(0xFFfed36a), // Change the color as needed
+                          color: Color(0xFFfed36a),
+                          // Change the color as needed
                           width: 5.0,
                         ),
                       ),
@@ -73,34 +74,35 @@ class Profile extends StatelessWidget {
                         width: 200, // Set the width to 200
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color:
-                                Colors.white, // Set the outline color to white
+                            color: Colors.white,
+                            // Set the outline color to white
                             width: 1.0, // Set the outline width as needed
                           ),
                         ),
                         child: SizedBox(
                           height: 75, // TextField expands to this height.
                           child: TextField(
-                            maxLines: null, // Set this
-                            expands: true, // and this
+                            maxLines: null,
+                            // Set this
+                            expands: true,
+                            // and this
                             keyboardType: TextInputType.multiline,
                             style: TextStyle(
-                              color:
-                                  Colors.white, // Set the text color to white
+                              color: Colors
+                                  .white, // Set the text color to white
                             ),
-                            cursorColor:
-                                Colors.white, // Set the cursor color to white
+                            cursorColor: Colors.white,
+                            // Set the cursor color to white
                             decoration: InputDecoration(
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors
-                                        .transparent), // Set the line color to transparent
+                                borderSide: BorderSide(color: Colors
+                                    .transparent), // Set the line color to transparen,
                               ),
                             ),
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Padding(
@@ -153,15 +155,15 @@ class Profile extends StatelessWidget {
                     child: TextButton(
                       style: ButtonStyle(
                         foregroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xFF455A64)),
+                        MaterialStateProperty.all<Color>(Color(0xFF455A64)),
                         backgroundColor:
-                            MaterialStatePropertyAll(Color(0xFFfed36a)),
+                        MaterialStatePropertyAll(Color(0xFFfed36a)),
                       ),
                       onPressed: () {},
                       child: Text(
                         'Setting',
-                        style:
-                            TextStyle(color: Color(0xFF000000), fontSize: 21),
+                        style: TextStyle(color: Color(0xFF000000),
+                            fontSize: 21),
                       ),
                     ),
                   ),
@@ -171,10 +173,12 @@ class Profile extends StatelessWidget {
                   child: TextButton(
                     style: TextButton.styleFrom(
                         primary: Colors.white,
-                        backgroundColor: Color(0xFFfed36a)),
+                        backgroundColor: Color(0xFFfed36a)
+                    ),
                     onPressed: () {},
                     child: Text('Logout',
-                        style: TextStyle(color: Color(0xFF000000))),
+                        style: TextStyle(color: Color(0xFF000000))
+                    ),
                   ),
                 ),
               ],
