@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:project_uts/screens/Profile.dart';
+import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/main.dart';
 
