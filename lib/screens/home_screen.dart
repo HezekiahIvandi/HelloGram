@@ -15,7 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: mobileBackgroundColor,
+          elevation: 0,
           centerTitle: false,
           title: SvgPicture.asset(
             'assets/logo/vector/default-monochrome.svg', // Logo
@@ -33,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: ListView(
           children: const [
+            PostCard(),
             PostCard(),
             PostCard(),
             PostCard(),
