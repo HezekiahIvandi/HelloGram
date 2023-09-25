@@ -13,20 +13,35 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 60,
         backgroundColor: mobileBackgroundColor,
         elevation: 0,
         title: TextFormField(
           decoration: const InputDecoration(
-            enabledBorder: OutlineInputBorder(borderSide: BorderSide()),
             labelText: 'Search',
             labelStyle: TextStyle(
-              color: Colors.white,
+              color: yellow,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
           ),
           onFieldSubmitted: (String _) {},
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              right: 10,
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search_outlined,
+                color: yellow,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

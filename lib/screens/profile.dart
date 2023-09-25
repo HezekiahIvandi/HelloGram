@@ -20,9 +20,9 @@ class Profile extends StatelessWidget {
                   child: Text(
                     'Profile',
                     style: TextStyle(
-                      color: Color(0xFFfed36a),
-                      fontSize: 22,
-                    ),
+                        color: Color(0xFFfed36a),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 Stack(

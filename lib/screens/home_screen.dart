@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/post_card.dart';
 
@@ -25,9 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DMFriendList(),
+                  ),
+                );
+              },
               icon: const Icon(
-                Icons.message_outlined,
+                Icons.messenger_outline,
                 color: yellow,
               ),
             ),

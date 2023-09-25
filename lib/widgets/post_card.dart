@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_uts/utils/colors.dart';
+import 'package:project_uts/widgets/like_animation.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
   const PostCard({super.key});
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  bool isLikeAnimating = false;
+  bool isLikeAnimatingRow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,7 @@ class PostCard extends StatelessWidget {
                 const Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(
-                      left: 8,
+                      left: 12,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -38,15 +47,41 @@ class PostCard extends StatelessWidget {
                           'username',
                           style: TextStyle(
                             color: yellow,
+                            fontWeight: FontWeight.bold,
                           ),
                         )
                       ],
                     ),
                   ),
                 ),
-                // TODO: Tambah Fungsionalitas Button
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: ListView(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          shrinkWrap: true,
+                          children: [
+                            "Remove",
+                          ]
+                              .map((e) => InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 8,
+                                      ),
+                                      child: Text(e),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    );
+                  },
                   icon: const Icon(
                     Icons.more_vert,
                     color: yellow,
@@ -57,25 +92,68 @@ class PostCard extends StatelessWidget {
           ),
 
           // Bagian Image
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.35,
-            width: double.infinity,
-            child: Image.asset(
-              'assets/img/istockphoto1.jpg',
-              fit: BoxFit.cover,
+          GestureDetector(
+            onDoubleTap: () {
+              setState(() {
+                isLikeAnimating = true;
+              });
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/img/istockphoto1.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: isLikeAnimating ? 1 : 0,
+                  child: LikeAnimation(
+                    isAnimating: isLikeAnimating,
+                    duration: const Duration(microseconds: 400),
+                    onEnd: () {
+                      setState(() {
+                        isLikeAnimating = false;
+                      });
+                    },
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                      size: 120,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
 
           // Bagian Like Comment
           Row(
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_border,
-                  color: yellow,
-                  // color: Colors.red,
+              LikeAnimation(
+                isAnimating: isLikeAnimatingRow,
+                duration: const Duration(milliseconds: 400),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isLikeAnimatingRow = true;
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.favorite_border,
+                    color: yellow,
+                    // color: Colors .red,
+                  ),
                 ),
+                onEnd: () {
+                  setState(() {
+                    isLikeAnimatingRow = false;
+                  });
+                },
               ),
               IconButton(
                 onPressed: () {},
@@ -87,7 +165,7 @@ class PostCard extends StatelessWidget {
               IconButton(
                 onPressed: () {},
                 icon: const Icon(
-                  Icons.send_outlined,
+                  Icons.share_outlined,
                   color: yellow,
                 ),
               ),
@@ -115,6 +193,9 @@ class PostCard extends StatelessWidget {
               children: [
                 const Text(
                   '1.234 Likes',
+                  style: TextStyle(
+                    color: blueWhite,
+                  ),
                 ),
                 Container(
                   width: double.infinity,
@@ -125,12 +206,16 @@ class PostCard extends StatelessWidget {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                          text: 'username',
-                        ),
+                            text: 'username',
+                            style: TextStyle(
+                              color: blueWhite,
+                            )),
                         TextSpan(
-                          text:
-                              '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-                        )
+                            text:
+                                '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+                            style: TextStyle(
+                              color: blueWhite,
+                            ))
                       ],
                     ),
                   ),
