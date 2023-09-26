@@ -37,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
               onPressed: () {},
               icon: const Icon(
                 Icons.search_outlined,
-                color: yellow,
+                color: blueWhite,
               ),
             ),
           ),

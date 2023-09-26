@@ -21,10 +21,18 @@ class _AddPostScreenState extends State<AddPostScreen> {
         elevation: 0,
         backgroundColor: mobileBackgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: blueWhite,
+          ),
           onPressed: () {},
         ),
-        title: const Text("Post to"),
+        title: const Text(
+          "New Post",
+          style: TextStyle(
+            color: yellow,
+          ),
+        ),
         centerTitle: false,
         actions: [
           TextButton(

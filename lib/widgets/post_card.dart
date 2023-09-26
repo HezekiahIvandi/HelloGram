@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/screens/comment_screen.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/like_animation.dart';
 
@@ -118,11 +119,12 @@ class _PostCardState extends State<PostCard> {
                     onEnd: () {
                       setState(() {
                         isLikeAnimating = false;
+                        isLikeAnimatingRow = true;
                       });
                     },
                     child: const Icon(
                       Icons.favorite,
-                      color: Colors.white,
+                      color: Colors.red,
                       size: 120,
                     ),
                   ),
@@ -139,24 +141,32 @@ class _PostCardState extends State<PostCard> {
                 duration: const Duration(milliseconds: 400),
                 child: IconButton(
                   onPressed: () {
-                    setState(() {
-                      isLikeAnimatingRow = true;
-                    });
+                    setState(
+                      () {
+                        if (isLikeAnimatingRow == false) {
+                          isLikeAnimatingRow = true;
+                        } else {
+                          isLikeAnimatingRow = false;
+                        }
+                      },
+                    );
                   },
-                  icon: const Icon(
-                    Icons.favorite_border,
-                    color: yellow,
+                  icon: Icon(
+                    isLikeAnimatingRow ? Icons.favorite : Icons.favorite_border,
+                    color: isLikeAnimatingRow ? Colors.red : yellow,
                     // color: Colors .red,
                   ),
                 ),
-                onEnd: () {
-                  setState(() {
-                    isLikeAnimatingRow = false;
-                  });
-                },
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CommentScreen(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.comment_outlined,
                   color: yellow,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:project_uts/screens/add_post_screen.dart';
+import 'package:project_uts/screens/add_post_screen.dart';
 import 'package:project_uts/screens/home_screen.dart';
 import 'package:project_uts/screens/notifications_screen.dart';
-import 'package:project_uts/screens/post_screen.dart';
+// import 'package:project_uts/screens/post_screen.dart';
 import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/screens/search_screen.dart';
 import 'package:project_uts/utils/colors.dart';
@@ -49,7 +49,7 @@ class _MobileLayoutState extends State<MobileLayout> {
         children: const [
           HomeScreen(),
           SearchScreen(),
-          PostScreen(),
+          AddPostScreen(),
           NotificationScreen(),
           Profile(),
         ],
