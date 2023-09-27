@@ -58,11 +58,18 @@ class ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF212832),
-        title: Text(
-          'Direct Messages',
-          style: TextStyle(
-            color: Color(0xFFFED36A),
-          ),
+        leading: Icon(Icons.keyboard_arrow_left, color: Color(0xFFFED36A)),
+        title: Row(
+          children: [
+            Icon(Icons.account_circle, color: Color(0xFFFED36A), size: 30),
+            SizedBox(width: 10),
+            Text(
+              'Username',
+              style: TextStyle(
+                color: Color(0xFFFED36A),
+              ),
+            ),
+          ],
         ),
       ),
       backgroundColor: Color(0xFF212832),
