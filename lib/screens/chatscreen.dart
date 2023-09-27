@@ -60,27 +60,19 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF212832),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.keyboard_arrow_left,
-            color: yellow,
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const DMFriendList(),
+        backgroundColor: Color(0xFF212832),
+        leading: Icon(Icons.keyboard_arrow_left, color: Color(0xFFFED36A)),
+        title: Row(
+          children: [
+            Icon(Icons.account_circle, color: Color(0xFFFED36A), size: 30),
+            SizedBox(width: 10),
+            Text(
+              'Username',
+              style: TextStyle(
+                color: Color(0xFFFED36A),
               ),
-            );
-          },
-        ),
-        title: const Text(
-          'Direct Messages',
-          style: TextStyle(
-            color: Color(0xFFFED36A),
-          ),
+            ),
+          ],
         ),
       ),
       backgroundColor: const Color(0xFF212832),
