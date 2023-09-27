@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/screens/add_post_screen.dart';
 import 'package:project_uts/screens/home_screen.dart';
 import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/utils/colors.dart';
@@ -45,7 +46,7 @@ class _MobileLayoutState extends State<MobileLayout> {
         children: const [
           HomeScreen(),
           Text('Search'),
-          Text('Post'),
+          AddPostScreen(),
           Text('Notification'),
           Profile(),
         ],
