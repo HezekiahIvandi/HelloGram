@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/utils/utils.dart';
 import 'package:project_uts/widgets/text_field.dart';
 import 'package:project_uts/resources/auth_methods.dart';
+import 'log_in.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -160,12 +160,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LogIn(),
-                        ),
-                      );
+                      Navigator.pop(context);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
