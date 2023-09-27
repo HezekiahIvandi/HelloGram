@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:project_uts/screens/dmfriendlist.dart';
-import 'package:project_uts/utils/colors.dart';
 
 class ChatApp extends StatelessWidget {
   const ChatApp({super.key});
@@ -60,9 +58,20 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF212832),
-        leading: Icon(Icons.keyboard_arrow_left, color: Color(0xFFFED36A)),
-        title: Row(
+        backgroundColor: const Color(0xFF212832),
+        leading: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_left),
+          color: const Color(0xFFFED36A),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DMFriendList(),
+              ),
+            );
+          },
+        ),
+        title: const Row(
           children: [
             Icon(Icons.account_circle, color: Color(0xFFFED36A), size: 30),
             SizedBox(width: 10),
