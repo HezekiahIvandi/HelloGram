@@ -6,6 +6,8 @@ import 'package:project_uts/responsive/web_layout.dart';
 import 'package:project_uts/screens/sign_up.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/text_field.dart';
+import 'package:project_uts/resources/auth_methods.dart';
+import 'package:project_uts/utils/utils.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -17,13 +19,37 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  bool _isLoading = false;
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  void loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().loginUser(
+        email: _emailController.text, password: _passwordController.text);
+
+    if (res == 'succes') {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebLayout(),
+            mobileScreenLayout: MobileLayout(),
+          ),
+        ),
+      );
+    } else {
+      showSnackBar(res, context);
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -75,17 +101,7 @@ class _LogInState extends State<LogIn> {
 
               //login button
               InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ResponsiveLayout(
-                        webScreenLayout: WebLayout(),
-                        mobileScreenLayout: MobileLayout(),
-                      ),
-                    ),
-                  );
-                },
+                onTap: loginUser,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -98,12 +114,18 @@ class _LogInState extends State<LogIn> {
                     ),
                     color: yellow,
                   ),
-                  child: const Text(
-                    'Log in',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: lightGrey,
+                          ),
+                        )
+                      : Text(
+                          'Log in',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                 ),
               ),
 

@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.7
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -56,6 +57,7 @@ flutter:
     - assets/logo/vector/default-monochrome-white.svg
     - assets/img/muka.jpg
     - assets/img/istockphoto1.jpg
+    - assets/img/default_profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

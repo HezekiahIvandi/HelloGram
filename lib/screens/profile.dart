@@ -1,189 +1,96 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:project_uts/screens/log_in.dart';
+import 'package:project_uts/utils/utils.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:project_uts/resources/storage_methods.dart';
+import 'package:project_uts/utils/colors.dart';
+import 'package:project_uts/resources/auth_methods.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color(0xFF212832),
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
-                  child: Text(
-                    'Profile',
-                    style: TextStyle(
-                      color: Color(0xFFfed36a),
-                      fontSize: 22,
-                    ),
-                  ),
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const CircleAvatar(
-                      radius: 54,
-                      backgroundColor: Color(0xFF212832),
-                      backgroundImage: NetworkImage(
-                        'https://images.pexels.com/photos/6977945/pexels-photo-6977945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 50, 0, 50),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: const Color(0xFFfed36a),
-                          // Change the color as needed
-                          width: 5.0,
-                        ),
-                      ),
-                      // =================================================================================
-                      // child: CircleAvatar(
-                      //   radius: 72,
-                      //   backgroundColor: Color(0xFF212832),
-                      //   backgroundImage: NetworkImage(
-                      //       'https://s.hdnux.com/photos/51/23/24/10827008/4/1200x0.jpg'
-                      //   ),
-                      // ),
-                      // ==================================================================================
-                    )
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'BIO',
-                      style: TextStyle(
-                        color: Color(0xFFfed36a),
-                        fontSize: 16, // Adjust the font size as needed
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: Container(
-                        width: 200, // Set the width to 200
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.white,
-                            // Set the outline color to white
-                            width: 1.0, // Set the outline width as needed
-                          ),
-                        ),
-                        child: const SizedBox(
-                          height: 75, // TextField expands to this height.
-                          child: TextField(
-                            maxLines: null,
-                            // Set this
-                            expands: true,
-                            // and this
-                            keyboardType: TextInputType.multiline,
-                            style: TextStyle(
-                              color:
-                                  Colors.white, // Set the text color to white
-                            ),
-                            cursorColor: Colors.white,
-                            // Set the cursor color to white
-                            decoration: InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors
-                                        .transparent), // Set the line color to transparen,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: TextField(
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                      ),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFF455A64),
-                        border: OutlineInputBorder(),
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: TextField(
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                      ),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFF455A64),
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: TextButton(
-                      style: ButtonStyle(
-                        foregroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFF455A64)),
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Color(0xFFfed36a)),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Setting',
-                        style:
-                            TextStyle(color: Color(0xFF000000), fontSize: 21),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(130, 10, 0, 0),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: const Color(0xFFfed36a)),
-                    onPressed: () {},
-                    child: const Text('Logout',
-                        style: TextStyle(color: Color(0xFF000000))),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  Uint8List? _image;
+
+  void selectImage() async {
+    Uint8List profilePic = await pickImage(ImageSource.gallery);
+    String pfpUrl = await StorageMethods()
+        .uploadImageToStorage('profilePics', profilePic, false);
+    setState(() {
+      _image = profilePic;
+    });
+  }
+
+  void signOut() async {
+    await AuthMethods().signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const LogIn(),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+            child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //circle avatar
+          Stack(
+            children: [
+              _image != null
+                  ? CircleAvatar(
+                      radius: 64,
+                      backgroundImage: MemoryImage(_image!),
+                    )
+                  : const CircleAvatar(
+                      radius: 64,
+                      backgroundImage: NetworkImage(
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s'),
+                    ),
+              Positioned(
+                  left: 80,
+                  bottom: -10,
+                  child: IconButton(
+                    onPressed: selectImage,
+                    icon: const Icon(Icons.add_a_photo),
+                  )),
+            ],
+          ),
+          InkWell(
+            onTap: signOut,
+            child: Container(
+              width: double.infinity,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              decoration: const ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4),
+                  ),
+                ),
+                color: yellow,
+              ),
+              child: Text(
+                'Sign out',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    )));
   }
 }

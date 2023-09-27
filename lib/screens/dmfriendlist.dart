@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:project_uts/main.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            backgroundColor: Color(0xFF212832),
+            backgroundColor: const Color(0xFF212832),
             appBar: AppBar(
-              title: Text(
+              title: const Text(
                 'Direct Messages',
                 style: TextStyle(
                   color: Color(0xFFFED36A),
@@ -19,15 +20,15 @@ class MyApp extends StatelessWidget {
               ),
               centerTitle: true,
               leading:
-                  Icon(Icons.keyboard_arrow_left, color: Color(0xFFFED36A)),
-              actions: <Widget>[
+                  const Icon(Icons.keyboard_arrow_left, color: Color(0xFFFED36A)),
+              actions: const <Widget>[
                 Icon(Icons.list, color: Color(0xFFFED36A), size: 30),
                 SizedBox(
                   width: 20,
                 ),
                 Icon(Icons.create, color: Color(0xFFFED36A), size: 30),
               ],
-              backgroundColor: Color(0xFF212832),
+              backgroundColor: const Color(0xFF212832),
             ),
             body: SingleChildScrollView(
               child: Column(
@@ -35,13 +36,13 @@ class MyApp extends StatelessWidget {
                   Container(
                     height: 35,
                     width: double.infinity,
-                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    padding: EdgeInsets.all(5),
+                    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: Color(0xFF263238),
+                      color: const Color(0xFF263238),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
@@ -63,8 +64,8 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.all(20),
-                      child: Row(children: <Widget>[
+                      margin: const EdgeInsets.all(20),
+                      child: const Row(children: <Widget>[
                         Text(
                           'Primary',
                           style: TextStyle(
@@ -83,10 +84,10 @@ class MyApp extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                       ])),
-                  Divider(
+                  const Divider(
                     color: Color(0xFFFED36A),
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'atlan.22',
                       style: TextStyle(
@@ -106,10 +107,10 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'hezekiahivandi',
                       style: TextStyle(
@@ -129,10 +130,10 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'devin.sprta',
                       style: TextStyle(
@@ -152,10 +153,10 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'jonatanputragunawan',
                       style: TextStyle(
@@ -175,10 +176,10 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'albert.2093',
                       style: TextStyle(
@@ -198,10 +199,10 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       'jonathnch',
                       style: TextStyle(
@@ -221,7 +222,7 @@ class MyApp extends StatelessWidget {
                     trailing:
                         Icon(Icons.camera_alt, size: 30, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

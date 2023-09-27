@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/colors.dart';
+import 'package:project_uts/utils/utils.dart';
 import 'package:project_uts/widgets/text_field.dart';
+import 'package:project_uts/resources/auth_methods.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -15,7 +17,7 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-
+  bool _isLoading = false;
   @override
   void dispose() {
     // TODO: implement dispose
@@ -23,6 +25,32 @@ class _SignUpState extends State<SignUp> {
     _emailController.dispose();
     _passwordController.dispose();
     _usernameController.dispose();
+  }
+
+  signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text);
+
+    print(res);
+    if (res == 'succes') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LogIn(),
+        ),
+      );
+    } else {
+      showSnackBar(res, context);
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -84,16 +112,9 @@ class _SignUpState extends State<SignUp> {
                 height: 32,
               ),
 
-              //login button
+              //sign up  button
               InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LogIn(),
-                    ),
-                  );
-                },
+                onTap: signUpUser,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -106,12 +127,18 @@ class _SignUpState extends State<SignUp> {
                     ),
                     color: yellow,
                   ),
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: lightGrey,
+                          ),
+                        )
+                      : Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                 ),
               ),
 
