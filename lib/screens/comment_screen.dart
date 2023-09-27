@@ -31,6 +31,7 @@ class _CommentScreenState extends State<CommentScreen> {
           },
         ),
       ),
+      backgroundColor: mobileBackgroundColor,
       body: const CommentCard(),
       bottomNavigationBar: SafeArea(
         child: Container(
@@ -55,6 +56,12 @@ class _CommentScreenState extends State<CommentScreen> {
                     decoration: InputDecoration(
                       hintText: 'Comment as username',
                       border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: blueWhite,
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: blueWhite,
                     ),
                   ),
                 ),

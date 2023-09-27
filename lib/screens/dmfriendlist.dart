@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/responsive/mobile_layout.dart';
+import 'package:project_uts/responsive/renponsive_layout.dart';
+import 'package:project_uts/responsive/web_layout.dart';
+import 'package:project_uts/screens/chatscreen.dart';
 
 class DMFriendList extends StatefulWidget {
   const DMFriendList({super.key});
@@ -29,7 +33,15 @@ class _DMFriendListState extends State<DMFriendList> {
               0xFFFED36A,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ResponsiveLayout(
+                    webScreenLayout: WebLayout(),
+                    mobileScreenLayout: MobileLayout(),
+                  ),
+                ),
+              );
             },
           ),
           actions: const <Widget>[
@@ -99,128 +111,194 @@ class _DMFriendListState extends State<DMFriendList> {
               const Divider(
                 color: Color(0xFFFED36A),
               ),
-              const ListTile(
-                title: Text(
-                  'atlan.22',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active 2h ago',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'atlan.22',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active 2h ago',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFF6564f3),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFF6564f3),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const ListTile(
-                title: Text(
-                  'hezekiahivandi',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active 3h ago',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'hezekiahivandi',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active 3h ago',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFF0245f1),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFF0245f1),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const ListTile(
-                title: Text(
-                  'devin.sprta',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active 5m ago',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'devin.sprta',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active 5m ago',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFF4d8584),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFF4d8584),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const ListTile(
-                title: Text(
-                  'jonatanputragunawan',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'jonatanputragunawan',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFF8a5354),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFF8a5354),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const ListTile(
-                title: Text(
-                  'albert.2093',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active 30m ago',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'albert.2093',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active 30m ago',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFFa59d27),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFFa59d27),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const ListTile(
-                title: Text(
-                  'jonathnch',
-                  style: TextStyle(
-                      color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Active 7m ago',
-                  style: TextStyle(
-                    color: Color(0xFFFED36A),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatApp(),
+                    ),
+                  );
+                },
+                child: const ListTile(
+                  title: Text(
+                    'jonathnch',
+                    style: TextStyle(
+                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
                   ),
+                  subtitle: Text(
+                    'Active 7m ago',
+                    style: TextStyle(
+                      color: Color(0xFFFED36A),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Color(0xFF8bfbb0),
+                    radius: 30,
+                  ),
+                  trailing:
+                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: Color(0xFF8bfbb0),
-                  radius: 30,
-                ),
-                trailing: Icon(Icons.camera_alt, size: 30, color: Colors.white),
               ),
               const SizedBox(
                 height: 10,

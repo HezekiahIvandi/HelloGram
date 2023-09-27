@@ -43,6 +43,7 @@ class _MobileLayoutState extends State<MobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mobileBackgroundColor,
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
