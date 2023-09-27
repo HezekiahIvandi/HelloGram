@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-void main() {
-  runApp(ChatApp());
-}
+import 'package:project_uts/screens/dmfriendlist.dart';
+import 'package:project_uts/utils/colors.dart';
 
 class ChatApp extends StatelessWidget {
+  const ChatApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ChatScreen(),
     );
@@ -17,6 +18,8 @@ class ChatApp extends StatelessWidget {
 }
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   State createState() => ChatScreenState();
 }
@@ -27,7 +30,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Future<void> _getImage() async {
     final picker = ImagePicker();
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       final File imageFile = File(pickedFile.path);
       ChatMessage message = ChatMessage(
@@ -72,7 +75,7 @@ class ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
-      backgroundColor: Color(0xFF212832),
+      backgroundColor: const Color(0xFF212832),
       body: Column(
         children: <Widget>[
           Flexible(
@@ -82,7 +85,7 @@ class ChatScreenState extends State<ChatScreen> {
               itemBuilder: (_, int index) => _messages[index],
             ),
           ),
-          Divider(height: 1.0),
+          const Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(color: Theme.of(context).cardColor),
             child: _buildTextComposer(context),
@@ -94,7 +97,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer(BuildContext context) {
     return IconTheme(
-      data: IconThemeData(color: Color(0xFFFED36A)),
+      data: const IconThemeData(color: Color(0xFFFED36A)),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
@@ -103,17 +106,17 @@ class ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(
+                decoration: const InputDecoration.collapsed(
                   hintText: 'Send a message',
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.send),
+              icon: const Icon(Icons.send),
               onPressed: () => _handleSubmitted(_textController.text),
             ),
             IconButton(
-              icon: Icon(Icons.photo),
+              icon: const Icon(Icons.photo),
               onPressed: _getImage,
             ),
           ],
@@ -124,7 +127,8 @@ class ChatScreenState extends State<ChatScreen> {
 }
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage({required this.text, required this.isSent, this.image});
+  const ChatMessage(
+      {super.key, required this.text, required this.isSent, this.image});
 
   final String? text;
   final bool isSent;
@@ -139,7 +143,7 @@ class ChatMessage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               child: Text('User'),
             ),
           ),
@@ -147,7 +151,7 @@ class ChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('User', style: Theme.of(context).textTheme.headline6),
+                Text('User', style: Theme.of(context).textTheme.titleLarge),
                 if (image != null)
                   Container(
                     margin: const EdgeInsets.only(top: 5.0),
@@ -161,15 +165,16 @@ class ChatMessage extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(top: 5.0),
                     child: Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: isSent ? Color(0xFFFED36A) : Colors.blue,
+                        color: isSent ? const Color(0xFFFED36A) : Colors.blue,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Text(
                         text!,
                         style: TextStyle(
-                          color: isSent ? Color(0xFF212832) : Colors.white,
+                          color:
+                              isSent ? const Color(0xFF212832) : Colors.white,
                         ),
                       ),
                     ),
