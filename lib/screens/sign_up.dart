@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/text_field.dart';
 
@@ -87,12 +86,7 @@ class _SignUpState extends State<SignUp> {
               //login button
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LogIn(),
-                    ),
-                  );
+                  Navigator.pop(context);
                 },
                 child: Container(
                   width: double.infinity,
@@ -133,12 +127,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LogIn(),
-                        ),
-                      );
+                      Navigator.pop(context);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
