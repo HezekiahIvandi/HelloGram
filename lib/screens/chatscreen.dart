@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:project_uts/screens/dmfriendlist.dart';
+import 'package:project_uts/utils/colors.dart';
 
 class ChatApp extends StatelessWidget {
   const ChatApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ChatScreen(),
+      theme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
+      home: const ChatScreen(),
     );
   }
 }
@@ -59,11 +62,12 @@ class ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF212832),
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_left),
           color: const Color(0xFFFED36A),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const DMFriendList(),

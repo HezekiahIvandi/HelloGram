@@ -1,4 +1,3 @@
-import "dart:ffi";
 import "dart:typed_data";
 
 import "package:flutter/material.dart";
@@ -61,15 +60,16 @@ class _AddPostScreenState extends State<AddPostScreen> {
     return _file == null
         ? Center(
             child: IconButton(
-              icon: Icon(Icons.upload),
+              icon: const Icon(Icons.upload),
               onPressed: () => _selectImage(context),
             ),
           )
         : Scaffold(
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
+              elevation: 0,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {},
               ),
               title: const Text("Post to"),
@@ -93,14 +93,14 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundImage: NetworkImage(
                           'https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextField(
-                        decoration: const InputDecoration(
+                      child: const TextField(
+                        decoration: InputDecoration(
                           hintText: 'Write a caption...',
                           border: InputBorder.none,
                         ),
