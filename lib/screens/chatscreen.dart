@@ -5,7 +5,7 @@ import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 
 class ChatApp extends StatelessWidget {
-  const ChatApp({Key? key});
+  const ChatApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ChatApp extends StatelessWidget {
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key});
+  const ChatScreen({super.key});
 
   @override
   State createState() => ChatScreenState();
@@ -61,11 +61,11 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF212832),
+        backgroundColor: mobileBackgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_left),
-          color: const Color(0xFFFED36A),
+          color: whiteUI,
           onPressed: () {
             Navigator.pushReplacement(
               context,
@@ -77,18 +77,18 @@ class ChatScreenState extends State<ChatScreen> {
         ),
         title: const Row(
           children: [
-            Icon(Icons.account_circle, color: Color(0xFFFED36A), size: 30),
+            Icon(Icons.account_circle, color: whiteUI, size: 30),
             SizedBox(width: 10),
             Text(
               'Username',
               style: TextStyle(
-                color: Color(0xFFFED36A),
+                color: whiteUI,
               ),
             ),
           ],
         ),
       ),
-      backgroundColor: const Color(0xFF212832),
+      backgroundColor: mobileBackgroundColor,
       body: Column(
         children: <Widget>[
           Flexible(
@@ -100,7 +100,7 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           const Divider(height: 1.0),
           Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
+            decoration: const BoxDecoration(color: darkGreyUI),
             child: _buildTextComposer(context),
           ),
         ],
@@ -110,7 +110,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer(BuildContext context) {
     return IconTheme(
-      data: const IconThemeData(color: Color(0xFFFED36A)),
+      data: const IconThemeData(color: whiteUI),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
@@ -149,13 +149,13 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AlignmentGeometry alignment =
-        isSent ? Alignment.topRight : Alignment.topLeft;
-    final Color bubbleColor = isSent ? const Color(0xFFFED36A) : Colors.blue;
-    final Color textColor = isSent ? const Color(0xFF212832) : Colors.white;
+    // final AlignmentGeometry alignment =
+    //     isSent ? Alignment.topRight : Alignment.topLeft;
+    final Color bubbleColor = isSent ? darkGreyUI : darkGreyUI;
+    final Color textColor = isSent ? whiteUI : lightGreyUI;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.only(top: 6),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end, // Adjusted alignment
@@ -164,10 +164,14 @@ class ChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end, // Adjusted alignment
               children: <Widget>[
-                Text('User', style: Theme.of(context).textTheme.headline6),
+                const Text('User',
+                    style: TextStyle(
+                      color: whiteUI,
+                      fontSize: 14,
+                    )),
                 if (image != null)
                   Container(
-                    margin: const EdgeInsets.only(top: 5.0),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Image.file(
                       image!,
                       width: 150.0,
@@ -176,9 +180,9 @@ class ChatMessage extends StatelessWidget {
                   )
                 else
                   Container(
-                    margin: const EdgeInsets.only(top: 5.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Container(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: bubbleColor,
                         borderRadius: BorderRadius.circular(8.0),
@@ -195,17 +199,16 @@ class ChatMessage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(right: 16.0),
+            margin: const EdgeInsets.fromLTRB(8, 18, 16, 8),
             child: const CircleAvatar(
-              child: Text('User'),
+              child: Text(
+                'User',
+                style: TextStyle(color: whiteUI),
+              ),
             ),
           ),
         ],
       ),
     );
   }
-}
-
-void main() {
-  runApp(ChatApp());
 }

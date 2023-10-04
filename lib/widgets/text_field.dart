@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/utils/colors.dart';
 
 class TextFields extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -23,14 +24,17 @@ class TextFields extends StatelessWidget {
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: const TextStyle(color: lightGreyUI, fontSize: 16),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
         filled: true,
+        fillColor: greyUI,
         contentPadding: const EdgeInsets.all(8),
       ),
       keyboardType: textInputType,
       obscureText: isPass,
+      style: const TextStyle(color: whiteUI, fontSize: 16),
     );
   }
 }

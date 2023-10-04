@@ -40,7 +40,7 @@ class _CommentCardState extends State<CommentCard> {
                           text: 'username',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: blueWhite,
+                            color: whiteUI,
                           ),
                           children: [
                             WidgetSpan(
@@ -53,7 +53,7 @@ class _CommentCardState extends State<CommentCard> {
                         TextSpan(
                           text: 'Some random comment',
                           style: TextStyle(
-                            color: blueWhite,
+                            color: whiteUI,
                           ),
                         )
                       ],
@@ -68,7 +68,7 @@ class _CommentCardState extends State<CommentCard> {
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: blueWhite),
+                          color: lightGreyUI),
                     ),
                   ),
                 ],
@@ -78,9 +78,9 @@ class _CommentCardState extends State<CommentCard> {
           Container(
             padding: const EdgeInsets.all(8),
             child: const Icon(
-              Icons.favorite,
+              Icons.favorite_outline,
               size: 16,
-              color: blueWhite,
+              color: redUI,
             ),
           )
         ],

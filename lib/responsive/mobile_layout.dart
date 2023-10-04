@@ -57,44 +57,69 @@ class _MobileLayoutState extends State<MobileLayout> {
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(
-            icon: Icon(
-              Icons.home,
-              color: _page == 0 ? yellow : blueWhite,
-            ),
+            icon: _page == 0
+                ? const Icon(
+                    Icons.home,
+                    color: yellowUI,
+                  )
+                : const Icon(
+                    Icons.home_outlined,
+                    color: yellowUI,
+                  ),
             label: '',
           ),
           NavigationDestination(
-            icon: Icon(
-              Icons.search,
-              color: _page == 1 ? yellow : blueWhite,
-            ),
+            icon: _page == 1
+                ? const Icon(
+                    Icons.search,
+                    color: greenUI,
+                  )
+                : const Icon(
+                    Icons.search_outlined,
+                    color: greenUI,
+                  ),
             label: '',
           ),
           NavigationDestination(
-            icon: Icon(
-              Icons.add_circle,
-              color: _page == 2 ? yellow : blueWhite,
-            ),
+            icon: _page == 2
+                ? const Icon(
+                    Icons.add_circle,
+                    color: aquaUI,
+                  )
+                : const Icon(
+                    Icons.add_circle_outline,
+                    color: aquaUI,
+                  ),
             label: '',
           ),
           NavigationDestination(
-            icon: Icon(
-              Icons.notifications,
-              color: _page == 3 ? yellow : blueWhite,
-            ),
+            icon: _page == 3
+                ? const Icon(
+                    Icons.notifications,
+                    color: blueUI,
+                  )
+                : const Icon(
+                    Icons.notifications_outlined,
+                    color: blueUI,
+                  ),
             label: '',
           ),
           NavigationDestination(
-            icon: Icon(
-              Icons.person,
-              color: _page == 4 ? yellow : blueWhite,
-            ),
+            icon: _page == 4
+                ? const Icon(
+                    Icons.person,
+                    color: purpleUI,
+                  )
+                : const Icon(
+                    Icons.person_outline,
+                    color: purpleUI,
+                  ),
             label: '',
           ),
         ],
         onDestinationSelected: navigationTapped,
         backgroundColor: mobileBackgroundColor,
-        indicatorColor: lightGrey,
+        indicatorColor: greyUI,
         selectedIndex: _page,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         height: 60,

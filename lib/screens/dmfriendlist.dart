@@ -3,6 +3,7 @@ import 'package:project_uts/responsive/mobile_layout.dart';
 import 'package:project_uts/responsive/renponsive_layout.dart';
 import 'package:project_uts/responsive/web_layout.dart';
 import 'package:project_uts/screens/chatscreen.dart';
+import 'package:project_uts/utils/colors.dart';
 
 class DMFriendList extends StatefulWidget {
   const DMFriendList({super.key});
@@ -17,21 +18,19 @@ class _DMFriendListState extends State<DMFriendList> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color(0xFF212832),
+        backgroundColor: mobileBackgroundColor,
         appBar: AppBar(
           elevation: 0,
           title: const Text(
             'Direct Messages',
             style: TextStyle(
-              color: Color(0xFFFED36A),
+              color: purpleUI,
             ),
           ),
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.keyboard_arrow_left),
-            color: const Color(
-              0xFFFED36A,
-            ),
+            color: whiteUI,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -44,47 +43,47 @@ class _DMFriendListState extends State<DMFriendList> {
               );
             },
           ),
-          actions: const <Widget>[
-            Icon(Icons.list, color: Color(0xFFFED36A), size: 30),
-            SizedBox(
-              width: 20,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.format_list_bulleted,
+                color: blueUI,
+                size: 24,
+              ),
             ),
-            Icon(Icons.create, color: Color(0xFFFED36A), size: 30),
+            const SizedBox(
+              width: 8,
+            ),
           ],
-          backgroundColor: const Color(0xFF212832),
+          backgroundColor: mobileBackgroundColor,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Container(
-                height: 35,
+                height: 40,
                 width: double.infinity,
                 margin:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF263238),
+                  color: darkGreyUI,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.search, color: Color(0xFFFED36A)),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Search',
-                          style: TextStyle(
-                            color: Color(0xFFFED36A),
-                          ),
-                        ),
-                      ],
+                child: const TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Search",
+                    hintStyle: TextStyle(
+                      color: lightGreyUI,
+                      fontSize: 16,
                     ),
-                    Icon(Icons.calendar_view_day, color: Color(0xFFFED36A)),
-                  ],
+                  ),
+                  style: TextStyle(
+                    color: whiteUI,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               Container(
@@ -93,7 +92,7 @@ class _DMFriendListState extends State<DMFriendList> {
                     Text(
                       'Primary',
                       style: TextStyle(
-                          color: Color(0xFFFED36A),
+                          color: whiteUI,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
@@ -103,13 +102,13 @@ class _DMFriendListState extends State<DMFriendList> {
                     Text(
                       'General',
                       style: TextStyle(
-                          color: Color(0xFFFED36A),
+                          color: whiteUI,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                   ])),
               const Divider(
-                color: Color(0xFFFED36A),
+                color: whiteUI,
               ),
               GestureDetector(
                 onTap: () {
@@ -123,21 +122,20 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'atlan.22',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active 2h ago',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(
                     backgroundColor: Color(0xFF6564f3),
                     radius: 30,
                   ),
-                  trailing:
-                      Icon(Icons.camera_alt, size: 30, color: Colors.white),
+                  trailing: Icon(Icons.camera_alt, size: 30, color: whiteUI),
                 ),
               ),
               const SizedBox(
@@ -155,13 +153,13 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'hezekiahivandi',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active 3h ago',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(
@@ -187,13 +185,13 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'devin.sprta',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active 5m ago',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(
@@ -219,13 +217,13 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'jonatanputragunawan',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(
@@ -251,13 +249,13 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'albert.2093',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active 30m ago',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(
@@ -283,13 +281,13 @@ class _DMFriendListState extends State<DMFriendList> {
                 child: const ListTile(
                   title: Text(
                     'jonathnch',
-                    style: TextStyle(
-                        color: Color(0xFFFED36A), fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(color: whiteUI, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'Active 7m ago',
                     style: TextStyle(
-                      color: Color(0xFFFED36A),
+                      color: whiteUI,
                     ),
                   ),
                   leading: CircleAvatar(

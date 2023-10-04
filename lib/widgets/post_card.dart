@@ -48,8 +48,9 @@ class _PostCardState extends State<PostCard> {
                         Text(
                           'username',
                           style: TextStyle(
-                            color: yellow,
+                            color: whiteUI,
                             fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         )
                       ],
@@ -86,7 +87,7 @@ class _PostCardState extends State<PostCard> {
                   },
                   icon: const Icon(
                     Icons.more_vert,
-                    color: yellow,
+                    color: blueUI,
                   ),
                 ),
               ],
@@ -125,7 +126,7 @@ class _PostCardState extends State<PostCard> {
                     },
                     child: const Icon(
                       Icons.favorite,
-                      color: Colors.red,
+                      color: redUI,
                       size: 120,
                     ),
                   ),
@@ -154,7 +155,7 @@ class _PostCardState extends State<PostCard> {
                   },
                   icon: Icon(
                     isLikeAnimatingRow ? Icons.favorite : Icons.favorite_border,
-                    color: isLikeAnimatingRow ? Colors.red : yellow,
+                    color: isLikeAnimatingRow ? redUI : redUI,
                     // color: Colors .red,
                   ),
                 ),
@@ -170,7 +171,7 @@ class _PostCardState extends State<PostCard> {
                 },
                 icon: const Icon(
                   Icons.comment_outlined,
-                  color: yellow,
+                  color: yellowUI,
                 ),
               ),
               IconButton(
@@ -203,7 +204,7 @@ class _PostCardState extends State<PostCard> {
                 },
                 icon: const Icon(
                   Icons.share_outlined,
-                  color: yellow,
+                  color: greenUI,
                 ),
               ),
               Expanded(
@@ -221,7 +222,8 @@ class _PostCardState extends State<PostCard> {
                     },
                     icon: Icon(
                       isPostSaved ? Icons.bookmark : Icons.bookmark_border,
-                      color: yellow,
+                      color: aquaUI,
+                      size: 26,
                     ),
                   ),
                 ),
@@ -239,7 +241,7 @@ class _PostCardState extends State<PostCard> {
                 const Text(
                   '1.234 Likes',
                   style: TextStyle(
-                    color: blueWhite,
+                    color: whiteUI,
                   ),
                 ),
                 Container(
@@ -253,13 +255,14 @@ class _PostCardState extends State<PostCard> {
                         TextSpan(
                             text: 'username',
                             style: TextStyle(
-                              color: blueWhite,
+                              color: whiteUI,
+                              fontWeight: FontWeight.bold,
                             )),
                         TextSpan(
                             text:
                                 '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
                             style: TextStyle(
-                              color: blueWhite,
+                              color: whiteUI,
                             ))
                       ],
                     ),
@@ -272,7 +275,7 @@ class _PostCardState extends State<PostCard> {
                   child: const Text(
                     'View all comments',
                     style: TextStyle(
-                      color: lightGrey,
+                      color: lightGreyUI,
                     ),
                   ),
                 ),
@@ -283,7 +286,7 @@ class _PostCardState extends State<PostCard> {
                   child: const Text(
                     '21 September 2023',
                     style: TextStyle(
-                      color: lightGrey,
+                      color: lightGreyUI,
                     ),
                   ),
                 )

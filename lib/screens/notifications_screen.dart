@@ -84,9 +84,10 @@ class _NotificationsScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: mobileBackgroundColor,
+        elevation: 0,
         title: const Text(
           'Notifications',
-          style: TextStyle(color: yellow),
+          style: TextStyle(color: blueUI),
         ),
         centerTitle: true,
       ),
@@ -103,17 +104,27 @@ class _NotificationsScreenState extends State<NotificationScreen> {
             title: Text(
               '${notification['username']} ${notification['content']}',
               style: TextStyle(
-                fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
+                fontWeight: isRead ? FontWeight.normal : FontWeight.w500,
+                color: isRead ? lightGreyUI : whiteUI,
               ),
             ),
             subtitle: Text(
               notification['timestamp'],
               style: TextStyle(
-                color: isRead ? Colors.grey : yellow,
+                fontWeight: isRead ? FontWeight.normal : FontWeight.w500,
+                color: isRead ? lightGreyUI : whiteUI,
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.mark_email_read),
+              icon: isRead
+                  ? const Icon(
+                      Icons.mark_email_unread_outlined,
+                      color: purpleUI,
+                    )
+                  : const Icon(
+                      Icons.mark_email_read,
+                      color: purpleUI,
+                    ),
               onPressed: () {
                 setState(() {
                   notification['read'] = !isRead;

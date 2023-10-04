@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           centerTitle: false,
           title: SvgPicture.asset(
-            'assets/logo/vector/default-monochrome.svg', // Logo
+            'assets/logo/vector/default-monochrome-color.svg',
             height: 28,
           ),
           actions: [
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               icon: const Icon(
                 Icons.messenger_outline,
-                color: yellow,
+                color: purpleUI,
               ),
             ),
           ],

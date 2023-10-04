@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
     if (res == 'succes') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LogIn(),
+          builder: (context) => const LogIn(),
         ),
       );
     } else {
@@ -67,7 +67,7 @@ class _SignUpState extends State<SignUp> {
               Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
-                'assets/logo/vector/default-monochrome.svg',
+                'assets/logo/vector/default-monochrome-color.svg',
                 height: 64,
               ),
 
@@ -126,19 +126,20 @@ class _SignUpState extends State<SignUp> {
                         Radius.circular(4),
                       ),
                     ),
-                    color: yellow,
+                    color: darkGreyUI,
                   ),
                   child: _isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
-                            color: lightGrey,
+                            color: lightGreyUI,
                           ),
                         )
                       : const Text(
                           'Sign Up',
                           style: TextStyle(
-                            color: Colors.black,
-                          ),
+                              color: whiteUI,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
                 ),
               ),

@@ -27,7 +27,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 child: const Text('Take a photo'),
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  Uint8List file = await pickImage(
+                  Uint8List? file = await pickImage(
                     ImageSource.camera,
                   );
                   setState(() {
@@ -60,7 +60,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
     return _file == null
         ? Center(
             child: IconButton(
-              icon: const Icon(Icons.upload),
+              icon: const Icon(
+                Icons.upload,
+                color: aquaUI,
+              ),
               onPressed: () => _selectImage(context),
             ),
           )
@@ -69,14 +72,22 @@ class _AddPostScreenState extends State<AddPostScreen> {
               backgroundColor: mobileBackgroundColor,
               elevation: 0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(
+                  Icons.keyboard_arrow_left,
+                  color: whiteUI,
+                ),
                 onPressed: () {
                   setState(() {
                     _file = null;
                   });
                 },
               ),
-              title: const Text("Post to"),
+              title: const Text(
+                "Post to",
+                style: TextStyle(
+                  color: aquaUI,
+                ),
+              ),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -84,7 +95,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     child: const Text(
                       'Post',
                       style: TextStyle(
-                        color: Colors.blueAccent,
+                        color: blueUI,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -93,42 +104,49 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
             body: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Write a caption...',
-                          border: InputBorder.none,
-                        ),
-                        maxLines: 8,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 45,
-                      width: 45,
-                      child: AspectRatio(
-                        aspectRatio: 487 / 451,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            image: MemoryImage(_file!),
-                            fit: BoxFit.fill,
-                            alignment: FractionalOffset.topCenter,
-                          )),
+                Container(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: const CircleAvatar(
+                          radius: 24,
+                          backgroundImage: NetworkImage(
+                              'https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
                         ),
                       ),
-                    ),
-                    const Divider(),
-                  ],
-                )
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: const TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Write a caption...',
+                            border: InputBorder.none,
+                          ),
+                          maxLines: 8,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 45,
+                        width: 45,
+                        child: AspectRatio(
+                          aspectRatio: 450 / 450,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: MemoryImage(_file!),
+                              fit: BoxFit.fill,
+                              alignment: FractionalOffset.topCenter,
+                            )),
+                          ),
+                        ),
+                      ),
+                      const Divider(),
+                    ],
+                  ),
+                ),
               ],
             ),
           );

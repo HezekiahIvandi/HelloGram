@@ -55,6 +55,7 @@ flutter:
   assets:
     - assets/logo/vector/default-monochrome.svg
     - assets/logo/vector/default-monochrome-white.svg
+    - assets/logo/vector/default-monochrome-color.svg
     - assets/img/muka.jpg
     - assets/img/istockphoto1.jpg
     - assets/img/default_profile.png

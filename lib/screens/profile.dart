@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:project_uts/screens/log_in.dart';
@@ -44,54 +43,65 @@ class _ProfileState extends State<Profile> {
             child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          //circle avatar
-          Stack(
-            children: [
-              _image != null
-                  ? CircleAvatar(
-                      radius: 64,
-                      backgroundImage: MemoryImage(_image!),
-                    )
-                  : const CircleAvatar(
-                      radius: 64,
-                      backgroundImage: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s'),
+      child: Container(
+        padding: const EdgeInsets.only(top: 60),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //circle avatar
+            Stack(
+              children: [
+                _image != null
+                    ? CircleAvatar(
+                        radius: 64,
+                        backgroundImage: MemoryImage(_image!),
+                      )
+                    : const CircleAvatar(
+                        radius: 64,
+                        backgroundImage: NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s'),
+                      ),
+                Positioned(
+                    left: 80,
+                    bottom: -10,
+                    child: IconButton(
+                      onPressed: selectImage,
+                      icon: const Icon(
+                        Icons.add_a_photo,
+                        color: whiteUI,
+                      ),
+                    )),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 20),
+              child: InkWell(
+                onTap: signOut,
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
                     ),
-              Positioned(
-                  left: 80,
-                  bottom: -10,
-                  child: IconButton(
-                    onPressed: selectImage,
-                    icon: const Icon(Icons.add_a_photo),
-                  )),
-            ],
-          ),
-          InkWell(
-            onTap: signOut,
-            child: Container(
-              width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: const ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
+                    color: darkGreyUI,
                   ),
-                ),
-                color: yellow,
-              ),
-              child: const Text(
-                'Sign out',
-                style: TextStyle(
-                  color: Colors.black,
+                  child: const Text(
+                    'Sign out',
+                    style: TextStyle(
+                      color: whiteUI,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     )));
   }

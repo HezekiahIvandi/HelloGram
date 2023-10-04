@@ -17,14 +17,14 @@ class _CommentScreenState extends State<CommentScreen> {
         backgroundColor: mobileBackgroundColor,
         title: const Text(
           'Comment',
-          style: TextStyle(color: yellow),
+          style: TextStyle(color: yellowUI),
         ),
         elevation: 0,
         centerTitle: false,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
-            color: blueWhite,
+            Icons.keyboard_arrow_left,
+            color: whiteUI,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -32,7 +32,13 @@ class _CommentScreenState extends State<CommentScreen> {
         ),
       ),
       backgroundColor: mobileBackgroundColor,
-      body: const CommentCard(),
+      body: ListView(
+        children: const [
+          CommentCard(),
+          CommentCard(),
+          CommentCard(),
+        ],
+      ),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: kToolbarHeight,
@@ -57,11 +63,11 @@ class _CommentScreenState extends State<CommentScreen> {
                       hintText: 'Comment as username',
                       border: InputBorder.none,
                       hintStyle: TextStyle(
-                        color: blueWhite,
+                        color: lightGreyUI,
                       ),
                     ),
                     style: TextStyle(
-                      color: blueWhite,
+                      color: whiteUI,
                     ),
                   ),
                 ),
@@ -76,7 +82,7 @@ class _CommentScreenState extends State<CommentScreen> {
                   child: const Text(
                     'Post',
                     style: TextStyle(
-                      color: Colors.blueAccent,
+                      color: blueUI,
                     ),
                   ),
                 ),

@@ -14,6 +14,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 60,
         backgroundColor: mobileBackgroundColor,
         elevation: 0,
@@ -21,7 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
           decoration: const InputDecoration(
             labelText: 'Search',
             labelStyle: TextStyle(
-              color: yellow,
+              color: greenUI,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -38,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
               onPressed: () {},
               icon: const Icon(
                 Icons.search_outlined,
-                color: blueWhite,
+                color: aquaUI,
               ),
             ),
           ),
