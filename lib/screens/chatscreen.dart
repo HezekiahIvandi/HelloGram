@@ -5,7 +5,7 @@ import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 
 class ChatApp extends StatelessWidget {
-  const ChatApp({super.key});
+  const ChatApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ChatApp extends StatelessWidget {
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  const ChatScreen({Key? key});
 
   @override
   State createState() => ChatScreenState();
@@ -141,7 +141,7 @@ class ChatScreenState extends State<ChatScreen> {
 
 class ChatMessage extends StatelessWidget {
   const ChatMessage(
-      {super.key, required this.text, required this.isSent, this.image});
+      {Key? key, required this.text, required this.isSent, this.image});
 
   final String? text;
   final bool isSent;
@@ -149,22 +149,22 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AlignmentGeometry alignment =
+        isSent ? Alignment.topRight : Alignment.topLeft;
+    final Color bubbleColor = isSent ? const Color(0xFFFED36A) : Colors.blue;
+    final Color textColor = isSent ? const Color(0xFF212832) : Colors.white;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end, // Adjusted alignment
         children: <Widget>[
-          Container(
-            margin: const EdgeInsets.only(right: 16.0),
-            child: const CircleAvatar(
-              child: Text('User'),
-            ),
-          ),
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end, // Adjusted alignment
               children: <Widget>[
-                Text('User', style: Theme.of(context).textTheme.titleLarge),
+                Text('User', style: Theme.of(context).textTheme.headline6),
                 if (image != null)
                   Container(
                     margin: const EdgeInsets.only(top: 5.0),
@@ -180,14 +180,13 @@ class ChatMessage extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: isSent ? const Color(0xFFFED36A) : Colors.blue,
+                        color: bubbleColor,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Text(
                         text!,
                         style: TextStyle(
-                          color:
-                              isSent ? const Color(0xFF212832) : Colors.white,
+                          color: textColor,
                         ),
                       ),
                     ),
@@ -195,8 +194,18 @@ class ChatMessage extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(right: 16.0),
+            child: const CircleAvatar(
+              child: Text('User'),
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+void main() {
+  runApp(ChatApp());
 }
