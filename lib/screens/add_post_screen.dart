@@ -40,7 +40,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 child: const Text('Choose from gallery'),
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  Uint8List file = await pickImage(
+                  Uint8List? file = await pickImage(
                     ImageSource.gallery,
                   );
                   setState(() {
@@ -70,7 +70,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
               elevation: 0,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _file = null;
+                  });
+                },
               ),
               title: const Text("Post to"),
               centerTitle: false,

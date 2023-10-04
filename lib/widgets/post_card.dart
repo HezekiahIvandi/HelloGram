@@ -13,6 +13,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
   bool isLikeAnimatingRow = false;
+  bool isPostSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +174,33 @@ class _PostCardState extends State<PostCard> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        shrinkWrap: true,
+                        children: [
+                          "Share",
+                        ]
+                            .map((e) => InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                                    child: Text(e),
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.share_outlined,
                   color: yellow,
@@ -183,9 +210,17 @@ class _PostCardState extends State<PostCard> {
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.bookmark_border,
+                    onPressed: () {
+                      setState(() {
+                        if (isPostSaved == false) {
+                          isPostSaved = true;
+                        } else {
+                          isPostSaved = false;
+                        }
+                      });
+                    },
+                    icon: Icon(
+                      isPostSaved ? Icons.bookmark : Icons.bookmark_border,
                       color: yellow,
                     ),
                   ),

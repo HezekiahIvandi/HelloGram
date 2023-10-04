@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:project_uts/screens/log_in.dart';
@@ -81,7 +83,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 color: yellow,
               ),
-              child: Text(
+              child: const Text(
                 'Sign out',
                 style: TextStyle(
                   color: Colors.black,

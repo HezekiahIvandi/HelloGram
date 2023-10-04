@@ -84,19 +84,19 @@ class _NotificationsScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: mobileBackgroundColor,
-        title: const Text('Notifications',
-          style: TextStyle(color: yellow),),
+        title: const Text(
+          'Notifications',
+          style: TextStyle(color: yellow),
+        ),
         centerTitle: true,
       ),
-
       body: ListView.builder(
         itemCount: notifications.length,
         itemBuilder: (context, index) {
           final notification = notifications[index];
           final bool isRead = notification['read'] ?? false;
           return ListTile(
-            onTap: () {
-            },
+            onTap: () {},
             leading: CircleAvatar(
               backgroundImage: AssetImage(notification['avatar']),
             ),
@@ -113,7 +113,7 @@ class _NotificationsScreenState extends State<NotificationScreen> {
               ),
             ),
             trailing: IconButton(
-              icon: Icon(Icons.mark_email_read),
+              icon: const Icon(Icons.mark_email_read),
               onPressed: () {
                 setState(() {
                   notification['read'] = !isRead;

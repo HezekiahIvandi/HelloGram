@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_uts/responsive/mobile_layout.dart';
@@ -120,7 +122,7 @@ class _LogInState extends State<LogIn> {
                             color: lightGrey,
                           ),
                         )
-                      : Text(
+                      : const Text(
                           'Log in',
                           style: TextStyle(
                             color: Colors.black,

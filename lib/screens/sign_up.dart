@@ -32,16 +32,17 @@ class _SignUpState extends State<SignUp> {
       _isLoading = true;
     });
     String res = await AuthMethods().signUpUser(
-        email: _emailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text);
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: '',
+    );
 
     print(res);
     if (res == 'succes') {
-      Navigator.push(
-        context,
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const LogIn(),
+          builder: (context) => LogIn(),
         ),
       );
     } else {
@@ -133,7 +134,7 @@ class _SignUpState extends State<SignUp> {
                             color: lightGrey,
                           ),
                         )
-                      : Text(
+                      : const Text(
                           'Sign Up',
                           style: TextStyle(
                             color: Colors.black,
