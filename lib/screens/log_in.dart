@@ -37,7 +37,7 @@ class _LogInState extends State<LogIn> {
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
 
-    if (res == 'Succes') {
+    if (res == 'Success') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ResponsiveLayout(
@@ -67,8 +67,8 @@ class _LogInState extends State<LogIn> {
               Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
-                'assets/logo/vector/default-monochrome-color.svg',
-                height: 64,
+                'assets/logo/default-logo-color.svg',
+                width: 280,
               ),
 
               //spacing
@@ -98,7 +98,7 @@ class _LogInState extends State<LogIn> {
 
               //spacing
               const SizedBox(
-                height: 32,
+                height: 20,
               ),
 
               //login button

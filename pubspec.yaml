@@ -59,6 +59,9 @@ flutter:
     - assets/img/muka.jpg
     - assets/img/istockphoto1.jpg
     - assets/img/default_profile.png
+    - assets/logo/default-logo-color-crop.svg
+    - assets/logo/default-logo-color.svg
+    - assets/logo/default-logo-color-horizontal.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

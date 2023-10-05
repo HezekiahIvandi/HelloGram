@@ -22,3 +22,12 @@ const blackUI = Color.fromRGBO(15, 15, 15, 1);
 // const darkGreyUI = Color.fromARGB(255, 63, 63, 63);
 // const greyUI = Color(0xFF44444c);
 // const whiteUI = Color(0xFFd6d6d6);
+
+//tambahan
+// const kDarkPrimaryColor = Color(0xFF212121);
+// const kDarkSecondaryColor = Color(0xFF373737);
+// const kLightPrimaryColor = Color(0xFFFFFFFF);
+// const kLightSecondaryColor = Color(0xFFF3F7FB);
+// const kAccentColor = Color(0xFFFFC107);
+
+// const lightGrey2 = Color.fromRGBO(115, 131, 139, 1);

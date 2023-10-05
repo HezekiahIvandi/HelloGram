@@ -21,9 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           centerTitle: false,
           title: SvgPicture.asset(
-            'assets/logo/vector/default-monochrome-color.svg',
-            height: 28,
+            'assets/logo/default-logo-color-horizontal.svg',
+            height: 40,
           ),
+          toolbarHeight: 60,
           actions: [
             IconButton(
               onPressed: () {

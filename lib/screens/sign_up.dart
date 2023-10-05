@@ -39,7 +39,7 @@ class _SignUpState extends State<SignUp> {
     );
 
     print(res);
-    if (res == 'succes') {
+    if (res == 'Success') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const LogIn(),
@@ -67,13 +67,13 @@ class _SignUpState extends State<SignUp> {
               Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
-                'assets/logo/vector/default-monochrome-color.svg',
-                height: 64,
+                'assets/logo/default-logo-color.svg',
+                height: 180,
               ),
 
               //spacing
               const SizedBox(
-                height: 50,
+                height: 32,
               ),
 
               //textfield username
@@ -110,7 +110,7 @@ class _SignUpState extends State<SignUp> {
 
               //spacing
               const SizedBox(
-                height: 32,
+                height: 18,
               ),
 
               //sign up  button

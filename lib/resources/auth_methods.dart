@@ -25,24 +25,25 @@ class AuthMethods {
 
         print(cred.user!.uid);
 
-        String photoUrl = await StorageMethods()
-            .uploadImageToStorage('profilePics', file!, false);
+        // String photoUrl = await StorageMethods()
+        //     .uploadImageToStorage('profilePics', file!, false);
 
         model.User user = model.User(
-          email: email,
-          uid: cred.user!.uid,
-          photoUrl: photoUrl,
           username: username,
+          uid: cred.user!.uid,
+          email: email,
+          photoUrl: '',
           bio: bio,
           followers: [],
           following: [],
         );
 
         //add user to the database
-        await _firestore.collection('users').doc(cred.user!.uid).set({
-              user.toJson(),
-            } as Map<String, dynamic>);
-        alert = "Succes";
+        await _firestore
+            .collection('users')
+            .doc(cred.user!.uid)
+            .set(user.toJson());
+        alert = "Success";
       } else {
         alert = "Please enter the empty field";
       }
@@ -72,7 +73,7 @@ class AuthMethods {
       if (email.isNotEmpty || password.isNotEmpty) {
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
-        res = 'Succes';
+        res = 'Success';
       } else {
         res = "Please enter the empty field";
       }
