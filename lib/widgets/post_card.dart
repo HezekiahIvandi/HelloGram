@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/widgets/notif_get.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:project_uts/screens/comment_screen.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/like_animation.dart';
@@ -152,6 +156,31 @@ class _PostCardState extends State<PostCard> {
                         }
                       },
                     );
+                    // ElegantNotification.success(
+                    //   width: 360,
+                    //   notificationPosition: NotificationPosition.topCenter,
+                    //   animation: AnimationType.fromTop,
+                    //   title: Text('Like'),
+                    //   description: Text('Username1 liked your post'),
+                    //   onDismiss: () {},
+                    // ).show(context);
+                    ElegantNotification(
+                      width: 360,
+                      height: 50,
+                      notificationPosition: NotificationPosition.topCenter,
+                      animation: AnimationType.fromTop,
+                      background: mobileBackgroundColor,
+                      description: Text(
+                        'Username1 liked your post', style: TextStyle(color: whiteUI),
+                      ),
+                      icon: Icon(
+                        Icons.favorite,
+                        color: redUI,
+                      ),
+                      showProgressIndicator: false,
+                      onDismiss: () {},
+                    ).show(context);
+                    addNewNotification(context);
                   },
                   icon: Icon(
                     isLikeAnimatingRow ? Icons.favorite : Icons.favorite_border,
@@ -297,4 +326,17 @@ class _PostCardState extends State<PostCard> {
       ),
     );
   }
+}
+void addNewNotification(BuildContext context) {
+  final notif = Provider.of<Notif>(context, listen: false);
+
+  final newNotification = {
+    'avatar': 'assets/img/muka.jpg',
+    'username': 'Username1',
+    'content': 'liked your post',
+    'timestamp': 'Just now',
+    'read': false,
+  };
+// Add the new notification to the beginning of the notifications list
+  notif.notifications.insert(0, newNotification);
 }
