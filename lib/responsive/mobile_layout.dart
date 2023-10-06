@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/model/user.dart' as model;
+import 'package:project_uts/provider/user_provider.dart';
 import 'package:project_uts/screens/add_post_screen.dart';
 import 'package:project_uts/screens/home_screen.dart';
 import 'package:project_uts/screens/notifications_screen.dart';
 import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/screens/search_screen.dart';
 import 'package:project_uts/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class MobileLayout extends StatefulWidget {
   const MobileLayout({super.key});
@@ -41,6 +44,7 @@ class _MobileLayoutState extends State<MobileLayout> {
 
   @override
   Widget build(BuildContext context) {
+    model.User? user = Provider.of<UserProvider>(context).getUser();
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
       body: PageView(
