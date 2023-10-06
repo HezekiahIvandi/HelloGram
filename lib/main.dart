@@ -5,12 +5,19 @@ import 'package:project_uts/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'responsive/mobile_layout.dart';
 import 'responsive/web_layout.dart';
+import 'package:project_uts/widgets/notif_get.dart';
+import 'package:provider/provider.dart';
 import 'responsive/renponsive_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Notif(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
