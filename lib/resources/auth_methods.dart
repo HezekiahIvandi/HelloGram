@@ -102,4 +102,7 @@ class AuthMethods {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  // Like Update
+  Future<void> likePost(String postId, String uid, List likes) async {}
 }

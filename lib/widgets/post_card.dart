@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:project_uts/model/user.dart';
+import 'package:project_uts/provider/user_provider.dart';
 import 'package:project_uts/screens/comment_screen.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/like_animation.dart';
+import 'package:provider/provider.dart';
 
 class PostCard extends StatefulWidget {
-  const PostCard({super.key});
+  final snap;
+  const PostCard({
+    super.key,
+    required this.snap,
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -17,6 +25,7 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
+    final User? user = Provider.of<UserProvider>(context).getUser();
     return Container(
       color: mobileBackgroundColor,
       padding: const EdgeInsets.symmetric(
@@ -32,13 +41,13 @@ class _PostCardState extends State<PostCard> {
             ).copyWith(right: 0),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 16,
-                  backgroundImage: AssetImage('assets/img/muka.jpg'),
+                  backgroundImage: NetworkImage(widget.snap['profImage']),
                 ),
-                const Expanded(
+                Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       left: 12,
                     ),
                     child: Column(
@@ -46,8 +55,8 @@ class _PostCardState extends State<PostCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'username',
-                          style: TextStyle(
+                          widget.snap['username'],
+                          style: const TextStyle(
                             color: whiteUI,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -105,10 +114,12 @@ class _PostCardState extends State<PostCard> {
               alignment: Alignment.center,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   width: double.infinity,
-                  child: Image.asset(
-                    'assets/img/istockphoto1.jpg',
+                  child: Image(
+                    image: NetworkImage(
+                      widget.snap['photoUrl'],
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -238,9 +249,9 @@ class _PostCardState extends State<PostCard> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '1.234 Likes',
-                  style: TextStyle(
+                Text(
+                  '${widget.snap["likes"].length} likes',
+                  style: const TextStyle(
                     color: whiteUI,
                   ),
                 ),
@@ -250,18 +261,17 @@ class _PostCardState extends State<PostCard> {
                     top: 8,
                   ),
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
-                            text: 'username',
-                            style: TextStyle(
+                            text: '${widget.snap["username"]}',
+                            style: const TextStyle(
                               color: whiteUI,
                               fontWeight: FontWeight.bold,
                             )),
                         TextSpan(
-                            text:
-                                '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-                            style: TextStyle(
+                            text: '  ${widget.snap["description"]}',
+                            style: const TextStyle(
                               color: whiteUI,
                             ))
                       ],
@@ -283,9 +293,11 @@ class _PostCardState extends State<PostCard> {
                   padding: const EdgeInsets.symmetric(
                     vertical: 4,
                   ),
-                  child: const Text(
-                    '21 September 2023',
-                    style: TextStyle(
+                  child: Text(
+                    DateFormat.yMMMd().format(
+                      widget.snap["datePublished"].toDate(),
+                    ),
+                    style: const TextStyle(
                       color: lightGreyUI,
                     ),
                   ),
