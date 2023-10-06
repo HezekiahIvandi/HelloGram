@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/widgets/notif_get.dart';
 import 'package:project_uts/utils/colors.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
+  void addNewNotification(BuildContext context) {
+    final notif = Provider.of<Notif>(context, listen: false);
+
+    final newNotification = {
+      'avatar': 'assets/img/muka.jpg',
+      'username': 'New User',
+      'content': 'liked your photo',
+      'timestamp': 'Just now',
+      'read': false,
+    };
+
+    notif.addNotification(newNotification);
+  }
 
   @override
   State<NotificationScreen> createState() => _NotificationsScreenState();
@@ -12,74 +27,10 @@ class _NotificationsScreenState extends State<NotificationScreen> {
   bool isLikeAnimatingRow = false;
   int likeCount = 0;
 
-  final List<Map<String, dynamic>> notifications = [
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 1',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 2',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 3',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 4',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 5',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 6',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-    {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'Username 7',
-      'content': 'liked your photo',
-      'timestamp': '1 hour ago',
-      'read': true,
-    },
-  ];
-  // void updateLikeCount() {
-  //   setState(() {
-  //     if (isLikeAnimatingRow == false) {
-  //       isLikeAnimatingRow = true;
-  //       likeCount = 1;
-  //       // Add a new like notification to the list
-  //       notifications.add('Username liked your photo');
-  //     } else {
-  //       isLikeAnimatingRow = false;
-  //       likeCount = 0;
-  //       // Remove the last like notification from the list
-  //       notifications.removeLast();
-  //     }
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
+    final notif = Provider.of<Notif>(context);
+    final List<Map<String, dynamic>> notifications = notif.notifications;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
