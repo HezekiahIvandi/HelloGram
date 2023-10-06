@@ -8,6 +8,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_uts/resources/storage_methods.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/resources/auth_methods.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/model/user.dart' as model;
+import 'package:project_uts/provider/user_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,8 +21,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   Uint8List? _image;
-  final String _bio =
+  String _bio =
       'I am flexible, reliable and possess excellent time keeping skills. I am an enthusiastic, self-motivated, reliable, responsible and hard working person. I am a mature team worker and adaptable to all challenging situations.';
+  int followers = 10;
+  int following = 10;
+  bool isLoading = false;
+  String _username = 'username';
+  String _email = 'username@gmail.com';
 
   void selectImage() async {
     Uint8List profilePic = await pickImage(ImageSource.gallery);
@@ -41,6 +49,14 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    model.User? user = Provider.of<UserProvider>(context).getUser;
+    if (user?.uid != null) {
+      _username = user!.username;
+      _bio = user!.bio;
+      _email = user!.email;
+      followers = user!.followers.length;
+      following = user!.following.length;
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -107,10 +123,10 @@ class _ProfileState extends State<Profile> {
                     //username and email
                     Container(
                       margin: const EdgeInsets.only(top: 24),
-                      child: const Column(
+                      child: Column(
                         children: [
                           Text(
-                            'Hezekiah Ivandi',
+                            _username,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
@@ -120,7 +136,7 @@ class _ProfileState extends State<Profile> {
                             height: 8,
                           ),
                           Text(
-                            'hezekiahivandi@gmail.com',
+                            _email,
                             style: TextStyle(
                               fontSize: 13,
                               color: lightGreyUI,
@@ -135,13 +151,13 @@ class _ProfileState extends State<Profile> {
                       height: 12,
                     ),
                     //followers
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: [
                             Text(
-                              '3200',
+                              followers.toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: blueUI,
@@ -162,7 +178,7 @@ class _ProfileState extends State<Profile> {
                         Column(
                           children: [
                             Text(
-                              '3200',
+                              following.toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: blueUI,

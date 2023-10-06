@@ -44,7 +44,8 @@ class _MobileLayoutState extends State<MobileLayout> {
 
   @override
   Widget build(BuildContext context) {
-    model.User? user = Provider.of<UserProvider>(context).getUser();
+    model.User? user = Provider.of<UserProvider>(context).getUser;
+    print(user?.username);
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
       body: PageView(
