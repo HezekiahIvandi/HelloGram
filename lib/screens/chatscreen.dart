@@ -4,20 +4,6 @@ import 'dart:io';
 import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 
-class ChatApp extends StatelessWidget {
-  const ChatApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      home: const ChatScreen(),
-    );
-  }
-}
-
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 

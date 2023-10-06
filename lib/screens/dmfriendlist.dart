@@ -115,7 +115,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },
@@ -146,7 +146,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },
@@ -178,7 +178,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },
@@ -210,7 +210,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },
@@ -242,7 +242,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },
@@ -274,7 +274,7 @@ class _DMFriendListState extends State<DMFriendList> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChatApp(),
+                      builder: (context) => const ChatScreen(),
                     ),
                   );
                 },

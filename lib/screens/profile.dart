@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:project_uts/screens/log_in.dart';

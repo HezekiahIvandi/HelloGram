@@ -1,5 +1,6 @@
 {
     "cmake.configureOnOpen": false,
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cmake.sourceDirectory": "/home/vie/Documents/Code/flutter_project/test/project_uts/linux"
 }

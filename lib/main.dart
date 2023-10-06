@@ -9,7 +9,6 @@ import 'responsive/web_layout.dart';
 import 'package:project_uts/widgets/notif_get.dart';
 import 'package:provider/provider.dart';
 import 'responsive/renponsive_layout.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

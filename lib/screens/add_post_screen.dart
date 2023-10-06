@@ -1,4 +1,3 @@
-import "dart:math";
 import "dart:typed_data";
 
 import "package:flutter/material.dart";
@@ -110,7 +109,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = Provider.of<UserProvider>(context).getUser();
+    final User? user = Provider.of<UserProvider>(context).getUser;
 
     return _file == null
         ? Center(
@@ -161,7 +160,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
             body: Column(
               children: [
-                _isLoading ? const LinearProgressIndicator() : Container(),
+                _isLoading
+                    ? const LinearProgressIndicator(
+                        color: blueUI,
+                      )
+                    : Container(),
                 const Divider(),
                 Container(
                   padding: const EdgeInsets.only(top: 10),
