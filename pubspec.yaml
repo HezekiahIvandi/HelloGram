@@ -35,6 +35,7 @@ dependencies:
   firebase_storage: ^11.2.6
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   flutter_svg: ^2.0.7
   image_picker: ^1.0.4
 
@@ -42,6 +43,26 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo/default-logo-color-crop-1024x1024.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#282828"
+  adaptive_icon_foreground: "assets/logo/default-logo-color-crop-1024x1024.png"
+  web:
+    generate: true
+    image_path: "assets/logo/default-logo-color-crop-1024x1024.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/logo/default-logo-color-crop-1024x1024.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/logo/default-logo-color-crop-1024x1024.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,8 +81,12 @@ flutter:
     - assets/img/istockphoto1.jpg
     - assets/img/default_profile.png
     - assets/logo/default-logo-color-crop.svg
+    - assets/logo/default-logo-color-crop.png
+    - assets/logo/default-logo-color-crop-1024x1024.png
     - assets/logo/default-logo-color.svg
     - assets/logo/default-logo-color-horizontal.svg
+    - assets/logo/default-logo-color-app.svg
+    - assets/logo/default-logo-color-app.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

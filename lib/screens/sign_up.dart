@@ -137,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                       : const Text(
                           'Sign Up',
                           style: TextStyle(
-                              color: whiteUI,
+                              color: purpleUI,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
@@ -158,7 +158,12 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: const Text("Have an account? "),
+                    child: const Text(
+                      "Have an account? ",
+                      style: TextStyle(
+                        color: aquaUI,
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -171,8 +176,7 @@ class _SignUpState extends State<SignUp> {
                       child: const Text(
                         "Log in.",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, color: purpleUI),
                       ),
                     ),
                   ),

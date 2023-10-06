@@ -144,7 +144,7 @@ class _ProfileState extends State<Profile> {
                               '3200',
                               style: TextStyle(
                                 fontSize: 25,
-                                color: purpleUI,
+                                color: blueUI,
                               ),
                             ),
                             Text(
@@ -165,13 +165,13 @@ class _ProfileState extends State<Profile> {
                               '3200',
                               style: TextStyle(
                                 fontSize: 25,
-                                color: purpleUI,
+                                color: blueUI,
                               ),
                             ),
                             Text(
                               'Following',
                               style: TextStyle(
-                                color: blueUI,
+                                color: purpleUI,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

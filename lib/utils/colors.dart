@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // const blueWhite = Color.fromRGBO(212, 223, 228, 1);
 // const yellow = Color.fromRGBO(254, 211, 106, 1);
 
-const mobileBackgroundColor = Color.fromRGBO(35, 35, 35, 1);
+const mobileBackgroundColor = Color(0xFF282828);
 const redUI = Color(0xFFfb4934);
 const greenUI = Color(0xFFb8bb26);
 const yellowUI = Color(0xFFfabd2f);

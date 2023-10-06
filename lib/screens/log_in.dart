@@ -127,7 +127,7 @@ class _LogInState extends State<LogIn> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: whiteUI,
+                            color: purpleUI,
                           ),
                         ),
                 ),
@@ -150,7 +150,7 @@ class _LogInState extends State<LogIn> {
                     child: const Text(
                       "Don't have an account? ",
                       style: TextStyle(
-                        color: whiteUI,
+                        color: aquaUI,
                       ),
                     ),
                   ),
@@ -171,7 +171,7 @@ class _LogInState extends State<LogIn> {
                         "Sign up.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: whiteUI,
+                          color: purpleUI,
                         ),
                       ),
                     ),
