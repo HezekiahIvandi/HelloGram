@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project_uts/resources/firestore_methods.dart';
 import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/post_card.dart';

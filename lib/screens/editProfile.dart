@@ -136,12 +136,13 @@ class _editProfileState extends State<editProfile> {
     model.User? user = Provider.of<UserProvider>(context).getUser;
     if (user?.uid != null) {
       _username = user!.username;
-      _bio = user!.bio;
-      _email = user!.email;
-      url = user!.photoUrl;
+      _bio = user.bio;
+      _email = user.email;
+      url = user.photoUrl;
     }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mobileBackgroundColor,
         elevation: 0,
         title: const Text(
           'Edit your profile',
