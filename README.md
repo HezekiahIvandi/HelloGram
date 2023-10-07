@@ -1,12 +1,18 @@
-test
+HelloGram
 
-535220024
-<<<<<<< HEAD
+Tugas Mobile Programing (instagram like)
 
-test (2)
+Anggota Kelompok
 
-test (3)
+535220011 Devin Saputra Wijaya
 
-test (4)
-=======
->>>>>>> 681e4032e98ee85c1d04f58bfdcfb5da61b1159c
+535220009 Jonathan Putra Gunawan
+
+535220026 Jonathan
+
+535220016 Vie Huang
+
+535220039 Hezekiah Ivandi
+
+535220024 Albert
+
