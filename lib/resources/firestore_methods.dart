@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:project_uts/model/post.dart';
 import 'package:project_uts/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';

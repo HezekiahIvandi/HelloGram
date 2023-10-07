@@ -8,7 +8,6 @@ import 'package:project_uts/utils/colors.dart';
 
 class MobileLayout extends StatefulWidget {
   const MobileLayout({super.key});
-
   @override
   State<MobileLayout> createState() => _MobileLayoutState();
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/widgets/notif_get.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'dart:io';
 import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
@@ -112,7 +116,27 @@ class ChatScreenState extends State<ChatScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.send),
-              onPressed: () => _handleSubmitted(_textController.text),
+              onPressed: () {
+                ElegantNotification(
+                  width: 360,
+                  height: 50,
+                  notificationPosition: NotificationPosition.topCenter,
+                  animation: AnimationType.fromTop,
+                  background: mobileBackgroundColor,
+                  description: const Text(
+                    'You got a new message',
+                    style: TextStyle(color: whiteUI),
+                  ),
+                  icon: const Icon(
+                    Icons.insert_comment,
+                    color: lightGreyUI,
+                  ),
+                  showProgressIndicator: false,
+                  onDismiss: () {},
+                ).show(context);
+                _handleSubmitted(_textController.text);
+                addNewNotification(context);
+              },
             ),
             IconButton(
               icon: const Icon(Icons.photo),
@@ -197,4 +221,18 @@ class ChatMessage extends StatelessWidget {
       ),
     );
   }
+}
+
+void addNewNotification(BuildContext context) {
+  final notif = Provider.of<Notif>(context, listen: false);
+
+  final newNotification = {
+    'avatar': 'assets/img/muka.jpg',
+    'username': 'Username1',
+    'content': 'You got a new message',
+    'timestamp': 'Just now',
+    'read': false,
+  };
+// Add the new notification to the beginning of the notifications list
+  notif.notifications.insert(0, newNotification);
 }

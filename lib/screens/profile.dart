@@ -1,12 +1,20 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:project_uts/screens/editProfile.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_uts/resources/storage_methods.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/resources/auth_methods.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/model/user.dart' as model;
+import 'package:project_uts/provider/user_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -16,9 +24,34 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String url =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s';
   Uint8List? _image;
-  final String _bio =
+  String _bio =
       'I am flexible, reliable and possess excellent time keeping skills. I am an enthusiastic, self-motivated, reliable, responsible and hard working person. I am a mature team worker and adaptable to all challenging situations.';
+  int followers = 10;
+  int following = 10;
+  bool isLoading = false;
+  String _username = 'username';
+  String _email = 'username@gmail.com';
+
+  @override
+  initState() {
+    super.initState();
+    getPfp();
+  }
+
+  getPfp() async {
+    var pfp = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      url = pfp.data()!['photoUrl'];
+      print(url);
+    });
+  }
 
   void selectImage() async {
     Uint8List profilePic = await pickImage(ImageSource.gallery);
@@ -40,6 +73,15 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    model.User? user = Provider.of<UserProvider>(context).getUser;
+    if (user?.uid != null) {
+      _username = user!.username;
+      _bio = user!.bio;
+      _email = user!.email;
+      followers = user!.followers.length;
+      following = user!.following.length;
+      url = user!.photoUrl;
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -88,10 +130,9 @@ class _ProfileState extends State<Profile> {
                                 radius: 64,
                                 backgroundImage: MemoryImage(_image!),
                               )
-                            : const CircleAvatar(
+                            : CircleAvatar(
                                 radius: 64,
-                                backgroundImage: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s'),
+                                backgroundImage: NetworkImage(url),
                               ),
                         Positioned(
                             left: 80,
@@ -106,10 +147,10 @@ class _ProfileState extends State<Profile> {
                     //username and email
                     Container(
                       margin: const EdgeInsets.only(top: 24),
-                      child: const Column(
+                      child: Column(
                         children: [
                           Text(
-                            'Hezekiah Ivandi',
+                            _username,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
@@ -119,7 +160,7 @@ class _ProfileState extends State<Profile> {
                             height: 8,
                           ),
                           Text(
-                            'hezekiahivandi@gmail.com',
+                            _email,
                             style: TextStyle(
                               fontSize: 13,
                               color: lightGreyUI,
@@ -134,13 +175,13 @@ class _ProfileState extends State<Profile> {
                       height: 12,
                     ),
                     //followers
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: [
                             Text(
-                              '3200',
+                              followers.toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: blueUI,
@@ -161,7 +202,7 @@ class _ProfileState extends State<Profile> {
                         Column(
                           children: [
                             Text(
-                              '3200',
+                              following.toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: blueUI,
@@ -217,7 +258,14 @@ class _ProfileState extends State<Profile> {
               Flexible(child: Container()),
               //button 1
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const editProfile(),
+                    ),
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
