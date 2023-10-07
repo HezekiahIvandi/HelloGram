@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:project_uts/responsive/renponsive_layout.dart';
-import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:typed_data';
-import 'package:project_uts/screens/editProfile.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/utils.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:project_uts/resources/storage_methods.dart';
-import 'package:project_uts/utils/colors.dart';
-import 'package:project_uts/resources/auth_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:project_uts/model/user.dart' as model;
 import 'package:project_uts/provider/user_provider.dart';
 import 'package:project_uts/responsive/mobile_layout.dart';
 import 'package:project_uts/responsive/web_layout.dart';
+import 'package:project_uts/widgets/buildTextField.dart';
+import 'package:project_uts/utils/utils.dart';
 
 class editProfile extends StatefulWidget {
   const editProfile({super.key});
@@ -38,6 +32,23 @@ class _editProfileState extends State<editProfile> {
   String _username = 'username';
   String _email = 'username@gmail.com';
   bool showPassword = false;
+
+  //update
+  // final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // _emailController.dispose();
+    _passwordController.dispose();
+    _newPasswordController.dispose();
+    _usernameController.dispose();
+    _bioController.dispose();
+  }
 
   @override
   initState() {
@@ -64,6 +75,60 @@ class _editProfileState extends State<editProfile> {
     setState(() {
       _image = profilePic;
     });
+  }
+
+  void saveProfile() {
+    String _username2 = _usernameController.text;
+    String _bio2 = _bioController.text;
+    // String _email2 = _emailController.text;
+    String password = _passwordController.text;
+    String newPassword = _newPasswordController.text;
+    updateData(_username2, _bio2, password, newPassword);
+  }
+
+  void updateData(
+      String username, String bio, String password, String newPassword) async {
+    final user = FirebaseAuth.instance.currentUser;
+    final cred =
+        EmailAuthProvider.credential(email: _email, password: password);
+    //update pass
+    user?.reauthenticateWithCredential(cred).then(
+      (value) {
+        user.updatePassword(newPassword).then(
+          (_) {
+            //Success, do something
+            print('Success to change password');
+            showSnackBar('Change has been saved!', context);
+          },
+        ).catchError(
+          (error) {
+            //Error, show something
+            print('Change password faied');
+          },
+        );
+      },
+    );
+    //update email
+    // user?.reauthenticateWithCredential(cred).then(
+    //   (value) {
+    //     user.updateEmail(email).then(
+    //       (_) {
+    //         //Success, do something
+    //         print('Success to change email');
+    //       },
+    //     ).catchError(
+    //       (error) {
+    //         //Error, show something
+    //         print('Change email faied');
+    //       },
+    //     );
+    //   },
+    // );
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .update({'username': username, 'bio': bio});
   }
 
   @override
@@ -145,20 +210,47 @@ class _editProfileState extends State<editProfile> {
 
               //datas textfields
 
-              buildTextField("Username", _username, false),
-              buildTextField("E-mail", _email, false),
+              buildTextField(
+                  textInputType: TextInputType.text,
+                  textEditingController: _usernameController,
+                  labelText: "Username",
+                  placeholder: _username,
+                  isPasswordTextField: false),
+              // buildTextField(
+              //     textInputType: TextInputType.emailAddress,
+              //     textEditingController: _emailController,
+              //     labelText: "E-mail",
+              //     placeholder: _email,
+              //     isPasswordTextField: false),
 
-              buildTextField("Bio", "About me.....", false),
-              buildTextField("Password", "********", true),
+              buildTextField(
+                  textInputType: TextInputType.text,
+                  textEditingController: _bioController,
+                  labelText: "Bio",
+                  placeholder: 'About me...',
+                  isPasswordTextField: false),
+              buildTextField(
+                  textInputType: TextInputType.text,
+                  textEditingController: _passwordController,
+                  labelText: "Current Password",
+                  placeholder: "********",
+                  isPasswordTextField: true),
+              buildTextField(
+                  textInputType: TextInputType.text,
+                  textEditingController: _newPasswordController,
+                  labelText: "New Password",
+                  placeholder: "********",
+                  isPasswordTextField: true),
 
               //spacing
 
               SizedBox(
-                height: 35,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  //cancel
                   InkWell(
                     onTap: () {},
                     child: Container(
@@ -182,8 +274,10 @@ class _editProfileState extends State<editProfile> {
                       ),
                     ),
                   ),
+
+                  //save
                   InkWell(
-                    onTap: () {},
+                    onTap: saveProfile,
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -206,43 +300,13 @@ class _editProfileState extends State<editProfile> {
                     ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 40,
               )
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300,
-              color: lightGreyUI,
-            )),
       ),
     );
   }
