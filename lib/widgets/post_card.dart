@@ -45,6 +45,7 @@ class _PostCardState extends State<PostCard> {
             child: Row(
               children: [
                 CircleAvatar(
+                  backgroundColor: blackUI,
                   radius: 16,
                   backgroundImage: NetworkImage(widget.snap['profImage']),
                 ),

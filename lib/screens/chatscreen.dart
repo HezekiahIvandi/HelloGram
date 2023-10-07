@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project_uts/model/user.dart';
+import 'package:project_uts/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:project_uts/widgets/notif_get.dart';
 import 'package:elegant_notification/elegant_notification.dart';
@@ -9,7 +11,13 @@ import 'package:project_uts/screens/dmfriendlist.dart';
 import 'package:project_uts/utils/colors.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  final String profImage;
+  final String receiver;
+  const ChatScreen({
+    super.key,
+    required this.profImage,
+    required this.receiver,
+  });
 
   @override
   State createState() => ChatScreenState();
@@ -65,14 +73,17 @@ class ChatScreenState extends State<ChatScreen> {
             );
           },
         ),
-        title: const Row(
+        title: Row(
           children: [
-            Icon(Icons.account_circle, color: whiteUI, size: 30),
-            SizedBox(width: 10),
+            CircleAvatar(
+              radius: 16,
+              backgroundImage: NetworkImage(widget.profImage),
+            ),
+            const SizedBox(width: 10),
             Text(
-              'Username',
-              style: TextStyle(
-                color: whiteUI,
+              widget.receiver,
+              style: const TextStyle(
+                color: blueUI,
               ),
             ),
           ],
@@ -115,7 +126,10 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.send),
+              icon: const Icon(
+                Icons.send,
+                color: aquaUI,
+              ),
               onPressed: () {
                 ElegantNotification(
                   width: 360,
@@ -139,7 +153,10 @@ class ChatScreenState extends State<ChatScreen> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.photo),
+              icon: const Icon(
+                Icons.photo,
+                color: purpleUI,
+              ),
               onPressed: _getImage,
             ),
           ],
@@ -150,15 +167,19 @@ class ChatScreenState extends State<ChatScreen> {
 }
 
 class ChatMessage extends StatelessWidget {
-  const ChatMessage(
-      {Key? key, required this.text, required this.isSent, this.image});
-
+  const ChatMessage({
+    Key? key,
+    required this.text,
+    required this.isSent,
+    this.image,
+  });
   final String? text;
   final bool isSent;
   final File? image;
 
   @override
   Widget build(BuildContext context) {
+    User? user = Provider.of<UserProvider>(context).getUser;
     // final AlignmentGeometry alignment =
     //     isSent ? Alignment.topRight : Alignment.topLeft;
     final Color bubbleColor = isSent ? darkGreyUI : darkGreyUI;
@@ -174,10 +195,11 @@ class ChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end, // Adjusted alignment
               children: <Widget>[
-                const Text('User',
-                    style: TextStyle(
-                      color: whiteUI,
-                      fontSize: 14,
+                Text(user?.username ?? "",
+                    style: const TextStyle(
+                      color: purpleUI,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     )),
                 if (image != null)
                   Container(
@@ -210,11 +232,8 @@ class ChatMessage extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(8, 18, 16, 8),
-            child: const CircleAvatar(
-              child: Text(
-                'User',
-                style: TextStyle(color: whiteUI),
-              ),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(user?.photoUrl ?? ""),
             ),
           ),
         ],

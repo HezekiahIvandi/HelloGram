@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_uts/responsive/renponsive_layout.dart';
-import 'package:project_uts/screens/profile.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:typed_data';
-import 'package:project_uts/screens/editProfile.dart';
-import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/utils.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:project_uts/resources/storage_methods.dart';
 import 'package:project_uts/utils/colors.dart';
-import 'package:project_uts/resources/auth_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:project_uts/model/user.dart' as model;
 import 'package:project_uts/provider/user_provider.dart';
@@ -71,12 +64,13 @@ class _editProfileState extends State<editProfile> {
     model.User? user = Provider.of<UserProvider>(context).getUser;
     if (user?.uid != null) {
       _username = user!.username;
-      _bio = user!.bio;
-      _email = user!.email;
-      url = user!.photoUrl;
+      _bio = user.bio;
+      _email = user.email;
+      url = user.photoUrl;
     }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mobileBackgroundColor,
         elevation: 0,
         title: const Text(
           'Edit your profile',

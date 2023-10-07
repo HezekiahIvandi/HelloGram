@@ -76,11 +76,11 @@ class _ProfileState extends State<Profile> {
     model.User? user = Provider.of<UserProvider>(context).getUser;
     if (user?.uid != null) {
       _username = user!.username;
-      _bio = user!.bio;
-      _email = user!.email;
-      followers = user!.followers.length;
-      following = user!.following.length;
-      url = user!.photoUrl;
+      _bio = user.bio;
+      _email = user.email;
+      followers = user.followers.length;
+      following = user.following.length;
+      url = user.photoUrl;
     }
     return Scaffold(
       appBar: AppBar(
