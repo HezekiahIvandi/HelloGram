@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 
 class MobileLayout extends StatefulWidget {
   const MobileLayout({super.key});
-
   @override
   State<MobileLayout> createState() => _MobileLayoutState();
 }

@@ -23,7 +23,6 @@ class AuthMethods {
     required String password,
     required String username,
     required String bio,
-    Uint8List? file,
   }) async {
     String alert = "Some error occured";
     try {
