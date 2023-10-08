@@ -20,7 +20,6 @@ class _SignUpState extends State<SignUp> {
   bool _isLoading = false;
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -32,14 +31,15 @@ class _SignUpState extends State<SignUp> {
       _isLoading = true;
     });
     String res = await AuthMethods().signUpUser(
-        email: _emailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text);
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: '',
+    );
 
     print(res);
-    if (res == 'succes') {
-      Navigator.push(
-        context,
+    if (res == 'Success') {
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const LogIn(),
         ),
@@ -66,13 +66,19 @@ class _SignUpState extends State<SignUp> {
               Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
-                'assets/logo/vector/default-monochrome.svg',
-                height: 64,
+                'assets/logo/default-logo-color.svg',
+                height: 180,
               ),
 
               //spacing
+              const Flexible(
+                child: SizedBox(
+                  height: 20,
+                ),
+              ),
+
               const SizedBox(
-                height: 50,
+                height: 12,
               ),
 
               //textfield username
@@ -108,8 +114,10 @@ class _SignUpState extends State<SignUp> {
               ),
 
               //spacing
-              const SizedBox(
-                height: 32,
+              const Flexible(
+                child: SizedBox(
+                  height: 18,
+                ),
               ),
 
               //sign up  button
@@ -125,19 +133,20 @@ class _SignUpState extends State<SignUp> {
                         Radius.circular(4),
                       ),
                     ),
-                    color: yellow,
+                    color: darkGreyUI,
                   ),
                   child: _isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
-                            color: lightGrey,
+                            color: lightGreyUI,
                           ),
                         )
-                      : Text(
+                      : const Text(
                           'Sign Up',
                           style: TextStyle(
-                            color: Colors.black,
-                          ),
+                              color: purpleUI,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
                 ),
               ),
@@ -156,7 +165,12 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: const Text("Have an account? "),
+                    child: const Text(
+                      "Have an account? ",
+                      style: TextStyle(
+                        color: aquaUI,
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -169,8 +183,7 @@ class _SignUpState extends State<SignUp> {
                       child: const Text(
                         "Log in.",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, color: purpleUI),
                       ),
                     ),
                   ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_uts/responsive/mobile_layout.dart';
@@ -22,7 +24,6 @@ class _LogInState extends State<LogIn> {
   bool _isLoading = false;
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -35,7 +36,7 @@ class _LogInState extends State<LogIn> {
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
 
-    if (res == 'succes') {
+    if (res == 'Success') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ResponsiveLayout(
@@ -65,8 +66,8 @@ class _LogInState extends State<LogIn> {
               Flexible(flex: 2, child: Container()),
               //logo
               SvgPicture.asset(
-                'assets/logo/vector/default-monochrome.svg',
-                height: 64,
+                'assets/logo/default-logo-color.svg',
+                width: 280,
               ),
 
               //spacing
@@ -96,7 +97,7 @@ class _LogInState extends State<LogIn> {
 
               //spacing
               const SizedBox(
-                height: 32,
+                height: 20,
               ),
 
               //login button
@@ -112,18 +113,20 @@ class _LogInState extends State<LogIn> {
                         Radius.circular(4),
                       ),
                     ),
-                    color: yellow,
+                    color: darkGreyUI,
                   ),
                   child: _isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
-                            color: lightGrey,
+                            color: lightGreyUI,
                           ),
                         )
-                      : Text(
+                      : const Text(
                           'Log in',
                           style: TextStyle(
-                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: purpleUI,
                           ),
                         ),
                 ),
@@ -143,7 +146,12 @@ class _LogInState extends State<LogIn> {
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: const Text("Don't have an account? "),
+                    child: const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(
+                        color: aquaUI,
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -162,6 +170,7 @@ class _LogInState extends State<LogIn> {
                         "Sign up.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: purpleUI,
                         ),
                       ),
                     ),

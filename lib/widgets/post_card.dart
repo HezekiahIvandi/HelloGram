@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/resources/firestore_methods.dart';
+import 'package:provider/provider.dart';
+import 'package:project_uts/widgets/notif_get.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
+import 'package:intl/intl.dart';
+import 'package:project_uts/model/user.dart';
+import 'package:project_uts/provider/user_provider.dart';
 import 'package:project_uts/screens/comment_screen.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/like_animation.dart';
 
 class PostCard extends StatefulWidget {
-  const PostCard({super.key});
+  final snap;
+  const PostCard({
+    super.key,
+    required this.snap,
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -12,10 +24,11 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
-  bool isLikeAnimatingRow = false;
+  bool isPostSaved = false;
 
   @override
   Widget build(BuildContext context) {
+    final User? user = Provider.of<UserProvider>(context).getUser;
     return Container(
       color: mobileBackgroundColor,
       padding: const EdgeInsets.symmetric(
@@ -31,13 +44,14 @@ class _PostCardState extends State<PostCard> {
             ).copyWith(right: 0),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
+                  backgroundColor: blackUI,
                   radius: 16,
-                  backgroundImage: AssetImage('assets/img/muka.jpg'),
+                  backgroundImage: NetworkImage(widget.snap['profImage']),
                 ),
-                const Expanded(
+                Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       left: 12,
                     ),
                     child: Column(
@@ -45,10 +59,11 @@ class _PostCardState extends State<PostCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'username',
-                          style: TextStyle(
-                            color: yellow,
+                          widget.snap['username'],
+                          style: const TextStyle(
+                            color: whiteUI,
                             fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         )
                       ],
@@ -85,7 +100,7 @@ class _PostCardState extends State<PostCard> {
                   },
                   icon: const Icon(
                     Icons.more_vert,
-                    color: yellow,
+                    color: blueUI,
                   ),
                 ),
               ],
@@ -94,19 +109,44 @@ class _PostCardState extends State<PostCard> {
 
           // Bagian Image
           GestureDetector(
-            onDoubleTap: () {
+            onDoubleTap: () async {
+              await FireStoreMethods().likePost(
+                widget.snap["postId"],
+                user!.uid,
+                widget.snap["likes"],
+              );
               setState(() {
                 isLikeAnimating = true;
               });
+              ElegantNotification(
+                width: 360,
+                height: 50,
+                notificationPosition: NotificationPosition.topCenter,
+                animation: AnimationType.fromTop,
+                background: mobileBackgroundColor,
+                description: Text(
+                  '${user!.username} liked your post',
+                  style: const TextStyle(color: whiteUI),
+                ),
+                icon: const Icon(
+                  Icons.favorite,
+                  color: redUI,
+                ),
+                showProgressIndicator: false,
+                onDismiss: () {},
+              ).show(context);
+              addNewNotification(context);
             },
             child: Stack(
               alignment: Alignment.center,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   width: double.infinity,
-                  child: Image.asset(
-                    'assets/img/istockphoto1.jpg',
+                  child: Image(
+                    image: NetworkImage(
+                      widget.snap["photoUrl"],
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -115,16 +155,16 @@ class _PostCardState extends State<PostCard> {
                   opacity: isLikeAnimating ? 1 : 0,
                   child: LikeAnimation(
                     isAnimating: isLikeAnimating,
+                    smallLike: true,
                     duration: const Duration(microseconds: 400),
                     onEnd: () {
                       setState(() {
                         isLikeAnimating = false;
-                        isLikeAnimatingRow = true;
                       });
                     },
                     child: const Icon(
                       Icons.favorite,
-                      color: Colors.red,
+                      color: redUI,
                       size: 120,
                     ),
                   ),
@@ -137,23 +177,41 @@ class _PostCardState extends State<PostCard> {
           Row(
             children: [
               LikeAnimation(
-                isAnimating: isLikeAnimatingRow,
+                isAnimating: widget.snap["likes"].contains(user?.uid ?? ""),
                 duration: const Duration(milliseconds: 400),
                 child: IconButton(
                   onPressed: () {
-                    setState(
-                      () {
-                        if (isLikeAnimatingRow == false) {
-                          isLikeAnimatingRow = true;
-                        } else {
-                          isLikeAnimatingRow = false;
-                        }
-                      },
+                    FireStoreMethods().likePost(
+                      widget.snap['postId'].toString(),
+                      user?.uid ?? "",
+                      widget.snap["likes"],
                     );
+                    ElegantNotification(
+                      width: 360,
+                      height: 50,
+                      notificationPosition: NotificationPosition.topCenter,
+                      animation: AnimationType.fromTop,
+                      background: mobileBackgroundColor,
+                      description: Text(
+                        '${user!.username} liked your post',
+                        style: const TextStyle(color: whiteUI),
+                      ),
+                      icon: const Icon(
+                        Icons.favorite,
+                        color: redUI,
+                      ),
+                      showProgressIndicator: false,
+                      onDismiss: () {},
+                    ).show(context);
+                    addNewNotification(context);
                   },
                   icon: Icon(
-                    isLikeAnimatingRow ? Icons.favorite : Icons.favorite_border,
-                    color: isLikeAnimatingRow ? Colors.red : yellow,
+                    widget.snap["likes"].contains(user?.uid)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: widget.snap["likes"].contains(user?.uid)
+                        ? redUI
+                        : redUI,
                     // color: Colors .red,
                   ),
                 ),
@@ -163,30 +221,65 @@ class _PostCardState extends State<PostCard> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CommentScreen(),
+                      builder: (context) => CommentScreen(snap: widget.snap),
                     ),
                   );
                 },
                 icon: const Icon(
                   Icons.comment_outlined,
-                  color: yellow,
+                  color: yellowUI,
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        shrinkWrap: true,
+                        children: [
+                          "Share",
+                        ]
+                            .map((e) => InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                                    child: Text(e),
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.share_outlined,
-                  color: yellow,
+                  color: greenUI,
                 ),
               ),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.bookmark_border,
-                      color: yellow,
+                    onPressed: () {
+                      setState(() {
+                        if (isPostSaved == false) {
+                          isPostSaved = true;
+                        } else {
+                          isPostSaved = false;
+                        }
+                      });
+                    },
+                    icon: Icon(
+                      isPostSaved ? Icons.bookmark : Icons.bookmark_border,
+                      color: aquaUI,
+                      size: 26,
                     ),
                   ),
                 ),
@@ -201,10 +294,10 @@ class _PostCardState extends State<PostCard> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '1.234 Likes',
-                  style: TextStyle(
-                    color: blueWhite,
+                Text(
+                  '${widget.snap["likes"].length} likes',
+                  style: const TextStyle(
+                    color: whiteUI,
                   ),
                 ),
                 Container(
@@ -213,18 +306,18 @@ class _PostCardState extends State<PostCard> {
                     top: 8,
                   ),
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
-                            text: 'username',
-                            style: TextStyle(
-                              color: blueWhite,
+                            text: '${widget.snap["username"]}',
+                            style: const TextStyle(
+                              color: whiteUI,
+                              fontWeight: FontWeight.bold,
                             )),
                         TextSpan(
-                            text:
-                                '   Test Caption zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-                            style: TextStyle(
-                              color: blueWhite,
+                            text: '  ${widget.snap["description"]}',
+                            style: const TextStyle(
+                              color: whiteUI,
                             ))
                       ],
                     ),
@@ -237,7 +330,7 @@ class _PostCardState extends State<PostCard> {
                   child: const Text(
                     'View all comments',
                     style: TextStyle(
-                      color: lightGrey,
+                      color: lightGreyUI,
                     ),
                   ),
                 ),
@@ -245,10 +338,12 @@ class _PostCardState extends State<PostCard> {
                   padding: const EdgeInsets.symmetric(
                     vertical: 4,
                   ),
-                  child: const Text(
-                    '21 September 2023',
-                    style: TextStyle(
-                      color: lightGrey,
+                  child: Text(
+                    DateFormat.yMMMd().format(
+                      widget.snap["datePublished"].toDate(),
+                    ),
+                    style: const TextStyle(
+                      color: lightGreyUI,
                     ),
                   ),
                 )
@@ -259,4 +354,18 @@ class _PostCardState extends State<PostCard> {
       ),
     );
   }
+}
+
+void addNewNotification(BuildContext context) {
+  final notif = Provider.of<Notif>(context, listen: false);
+  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
+  final newNotification = {
+    'avatar': user?.photoUrl ?? "",
+    'username': user?.username ?? "",
+    'content': 'liked your post',
+    'timestamp': 'Just now',
+    'read': false,
+  };
+// Add the new notification to the beginning of the notifications list
+  notif.notifications.insert(0, newNotification);
 }

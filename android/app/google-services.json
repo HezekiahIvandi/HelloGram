@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "838616824859",
-    "project_id": "hellogram-66c66",
-    "storage_bucket": "hellogram-66c66.appspot.com"
+    "project_number": "694217746257",
+    "project_id": "hellogram2-fb124",
+    "storage_bucket": "hellogram2-fb124.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:838616824859:android:b7ccbd64f847cf67ea4cbe",
+        "mobilesdk_app_id": "1:694217746257:android:1ba8ab67f1f506b0275570",
         "android_client_info": {
           "package_name": "com.example.project_uts"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAwfTorf9yC9QESvZ1cR7FbNOGVlSNIhbM"
+          "current_key": "AIzaSyAfPvtMwsaF5qRxlLkoEp8Tv6YLi0vhl_c"
         }
       ],
       "services": {

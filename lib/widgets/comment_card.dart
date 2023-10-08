@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:project_uts/utils/colors.dart';
 
 class CommentCard extends StatefulWidget {
-  const CommentCard({super.key});
+  final snap;
+  const CommentCard({super.key, required this.snap});
 
   @override
   State<CommentCard> createState() => _CommentCardState();
 }
 
 class _CommentCardState extends State<CommentCard> {
+  bool isLike = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,10 +22,8 @@ class _CommentCardState extends State<CommentCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircleAvatar(
-            backgroundImage: NetworkImage(
-              'https://images.unsplash.com/photo-1695491333484-ecb0ce9e8d3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-            ),
+          CircleAvatar(
+            backgroundImage: NetworkImage(widget.snap["profImage"]),
             radius: 18,
           ),
           Expanded(
@@ -34,15 +35,15 @@ class _CommentCardState extends State<CommentCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
-                          text: 'username',
-                          style: TextStyle(
+                          text: widget.snap["username"],
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: blueWhite,
+                            color: greenUI,
                           ),
-                          children: [
+                          children: const [
                             WidgetSpan(
                               alignment: PlaceholderAlignment.baseline,
                               baseline: TextBaseline.alphabetic,
@@ -51,24 +52,25 @@ class _CommentCardState extends State<CommentCard> {
                           ],
                         ),
                         TextSpan(
-                          text: 'Some random comment',
-                          style: TextStyle(
-                            color: blueWhite,
+                          text: widget.snap["text"],
+                          style: const TextStyle(
+                            color: whiteUI,
                           ),
                         )
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       top: 4,
                     ),
                     child: Text(
-                      '26/09/23',
-                      style: TextStyle(
+                      DateFormat.yMMMd()
+                          .format(widget.snap["datePublished"].toDate()),
+                      style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: blueWhite),
+                          color: lightGreyUI),
                     ),
                   ),
                 ],
@@ -76,11 +78,22 @@ class _CommentCardState extends State<CommentCard> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(8),
-            child: const Icon(
-              Icons.favorite,
-              size: 16,
-              color: blueWhite,
+            padding: const EdgeInsets.all(0),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  if (isLike == false) {
+                    isLike = true;
+                  } else {
+                    isLike = false;
+                  }
+                });
+              },
+              icon: Icon(
+                isLike ? Icons.favorite : Icons.favorite_outline,
+                size: 16,
+                color: redUI,
+              ),
             ),
           )
         ],
