@@ -73,8 +73,12 @@ class _SignUpState extends State<SignUp> {
               //spacing
               Flexible(
                   child: SizedBox(
-                height: 32,
+                height: 20,
               )),
+
+              SizedBox(
+                height: 12,
+              ),
 
               //textfield username
               TextFields(
