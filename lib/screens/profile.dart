@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:project_uts/resources/firestore_methods.dart';
 import 'package:project_uts/screens/editProfile.dart';
 import 'package:project_uts/screens/log_in.dart';
 import 'package:project_uts/utils/utils.dart';
@@ -80,267 +81,280 @@ class _ProfileState extends State<Profile> {
       following = user.following.length;
       url = user.photoUrl;
     }
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: mobileBackgroundColor,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          "Profile",
-          style: TextStyle(
-            color: purpleUI,
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.only(top: 24),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(40),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: mobileBackgroundColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: blackUI,
-                      blurRadius: 5.0, // soften the shadow
-                      spreadRadius: 0.5, //extend the shadow
-                      offset: Offset(
-                        0.1, // Move to right 5  horizontally
-                        0.1, // Move to bottom 5 Vertically
-                      ),
-                    ),
-                  ],
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('users').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: lightGreyUI,
+              ),
+            );
+          }
+          return Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: mobileBackgroundColor,
+              elevation: 0,
+              centerTitle: true,
+              title: const Text(
+                "Profile",
+                style: TextStyle(
+                  color: purpleUI,
                 ),
+              ),
+            ),
+            body: SafeArea(
+              child: Container(
+                margin: const EdgeInsets.only(top: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                width: double.infinity,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //circle avatar
-                    Stack(
-                      children: [
-                        _image != null
-                            ? CircleAvatar(
-                                radius: 64,
-                                backgroundImage: MemoryImage(_image!),
-                              )
-                            : CircleAvatar(
-                                radius: 64,
-                                backgroundImage: NetworkImage(url),
-                              ),
-                        Positioned(
-                            left: 80,
-                            bottom: -10,
-                            child: IconButton(
-                              onPressed: selectImage,
-                              icon: const Icon(Icons.add_a_photo),
-                            )),
-                      ],
-                    ),
-
-                    //username and email
                     Container(
-                      margin: const EdgeInsets.only(top: 24),
+                      padding: const EdgeInsets.all(40),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: mobileBackgroundColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: blackUI,
+                            blurRadius: 5.0, // soften the shadow
+                            spreadRadius: 0.5, //extend the shadow
+                            offset: Offset(
+                              0.1, // Move to right 5  horizontally
+                              0.1, // Move to bottom 5 Vertically
+                            ),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
-                          Text(
-                            _username,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                          //circle avatar
+                          Stack(
+                            children: [
+                              _image != null
+                                  ? CircleAvatar(
+                                      radius: 64,
+                                      backgroundImage: MemoryImage(_image!),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 64,
+                                      backgroundImage: NetworkImage(url),
+                                    ),
+                              Positioned(
+                                  left: 80,
+                                  bottom: -10,
+                                  child: IconButton(
+                                    onPressed: selectImage,
+                                    icon: const Icon(Icons.add_a_photo),
+                                  )),
+                            ],
+                          ),
+
+                          //username and email
+                          Container(
+                            margin: const EdgeInsets.only(top: 24),
+                            child: Column(
+                              children: [
+                                Text(
+                                  _username,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  _email,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: lightGreyUI,
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+
+                          //sizedbox spacing
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          //followers
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    followers.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 25,
+                                      color: blueUI,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Followers',
+                                    style: TextStyle(
+                                      color: aquaUI,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    following.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 25,
+                                      color: blueUI,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Following',
+                                    style: TextStyle(
+                                      color: purpleUI,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          //
+                        ],
+                      ),
+                    ),
+                    //sized box
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    //about me
+                    Container(
+                      margin: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'About me',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: greenUI),
                           ),
                           const SizedBox(
                             height: 8,
                           ),
                           Text(
-                            _email,
+                            _bio.length > 210
+                                ? _bio.substring(0, 210) + '...'
+                                : _bio,
                             style: const TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               color: lightGreyUI,
                             ),
                           ),
                         ],
                       ),
                     ),
-
-                    //sizedbox spacing
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    //followers
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
+                    Flexible(child: Container()),
+                    //button 1
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const editProfile(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: const ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          color: darkGreyUI,
+                        ),
+                        child: Row(
                           children: [
-                            Text(
-                              followers.toString(),
-                              style: const TextStyle(
-                                fontSize: 25,
-                                color: blueUI,
-                              ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.settings),
+                              color: yellowUI,
                             ),
                             const Text(
-                              'Followers',
+                              'Edit profile',
                               style: TextStyle(
-                                color: aquaUI,
+                                color: yellowUI,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Flexible(child: Container()),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.chevron_right),
+                              color: lightGreyUI,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    //button2
+                    InkWell(
+                      onTap: signOut,
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 12),
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: const ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          color: darkGreyUI,
+                        ),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              color: redUI,
+                              onPressed: () {},
+                              icon: const Icon(Icons.logout),
+                            ),
+                            const Text(
+                              'Sign out',
+                              style: TextStyle(
+                                color: redUI,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              following.toString(),
-                              style: const TextStyle(
-                                fontSize: 25,
-                                color: blueUI,
-                              ),
-                            ),
-                            const Text(
-                              'Following',
-                              style: TextStyle(
-                                color: purpleUI,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                      ),
                     ),
-                    //
-                  ],
-                ),
-              ),
-              //sized box
-              const SizedBox(
-                height: 12,
-              ),
-              //about me
-              Container(
-                margin: const EdgeInsets.only(top: 4),
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'About me',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: greenUI),
-                    ),
+
                     const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      _bio.length > 210 ? _bio.substring(0, 210) + '...' : _bio,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: lightGreyUI,
-                      ),
-                    ),
+                      height: 40,
+                    )
                   ],
                 ),
               ),
-              Flexible(child: Container()),
-              //button 1
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const editProfile(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    color: darkGreyUI,
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.settings),
-                        color: yellowUI,
-                      ),
-                      const Text(
-                        'Edit profile',
-                        style: TextStyle(
-                          color: yellowUI,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Flexible(child: Container()),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.chevron_right),
-                        color: lightGreyUI,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              //button2
-              InkWell(
-                onTap: signOut,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 12),
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    color: darkGreyUI,
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        color: redUI,
-                        onPressed: () {},
-                        icon: const Icon(Icons.logout),
-                      ),
-                      const Text(
-                        'Sign out',
-                        style: TextStyle(
-                          color: redUI,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(
-                height: 40,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 }

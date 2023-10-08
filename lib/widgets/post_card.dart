@@ -81,7 +81,7 @@ class _PostCardState extends State<PostCard> {
                           ),
                           shrinkWrap: true,
                           children: [
-                            "Remove",
+                            "Report",
                           ]
                               .map((e) => InkWell(
                                     onTap: () {},
@@ -118,24 +118,26 @@ class _PostCardState extends State<PostCard> {
               setState(() {
                 isLikeAnimating = true;
               });
-              ElegantNotification(
-                width: 360,
-                height: 50,
-                notificationPosition: NotificationPosition.topCenter,
-                animation: AnimationType.fromTop,
-                background: mobileBackgroundColor,
-                description: Text(
-                  '${user!.username} liked your post',
-                  style: const TextStyle(color: whiteUI),
-                ),
-                icon: const Icon(
-                  Icons.favorite,
-                  color: redUI,
-                ),
-                showProgressIndicator: false,
-                onDismiss: () {},
-              ).show(context);
-              addNewNotification(context);
+              if (widget.snap["likes"].contains(user.uid) == false) {
+                ElegantNotification(
+                  width: 360,
+                  height: 50,
+                  notificationPosition: NotificationPosition.topCenter,
+                  animation: AnimationType.fromTop,
+                  background: mobileBackgroundColor,
+                  description: Text(
+                    '${user!.username} liked your post',
+                    style: const TextStyle(color: whiteUI),
+                  ),
+                  icon: const Icon(
+                    Icons.favorite,
+                    color: redUI,
+                  ),
+                  showProgressIndicator: false,
+                  onDismiss: () {},
+                ).show(context);
+                addNewNotification(context);
+              }
             },
             child: Stack(
               alignment: Alignment.center,
@@ -186,24 +188,26 @@ class _PostCardState extends State<PostCard> {
                       user?.uid ?? "",
                       widget.snap["likes"],
                     );
-                    ElegantNotification(
-                      width: 360,
-                      height: 50,
-                      notificationPosition: NotificationPosition.topCenter,
-                      animation: AnimationType.fromTop,
-                      background: mobileBackgroundColor,
-                      description: Text(
-                        '${user!.username} liked your post',
-                        style: const TextStyle(color: whiteUI),
-                      ),
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: redUI,
-                      ),
-                      showProgressIndicator: false,
-                      onDismiss: () {},
-                    ).show(context);
-                    addNewNotification(context);
+                    if (widget.snap["likes"].contains(user?.uid) == false) {
+                      ElegantNotification(
+                        width: 360,
+                        height: 50,
+                        notificationPosition: NotificationPosition.topCenter,
+                        animation: AnimationType.fromTop,
+                        background: mobileBackgroundColor,
+                        description: Text(
+                          '${user!.username} liked your post',
+                          style: const TextStyle(color: whiteUI),
+                        ),
+                        icon: const Icon(
+                          Icons.favorite,
+                          color: redUI,
+                        ),
+                        showProgressIndicator: false,
+                        onDismiss: () {},
+                      ).show(context);
+                      addNewNotification(context);
+                    }
                   },
                   icon: Icon(
                     widget.snap["likes"].contains(user?.uid)

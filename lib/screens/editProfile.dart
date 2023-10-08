@@ -89,7 +89,11 @@ class _editProfileState extends State<editProfile> {
     String newPassword = _newPasswordController.text;
     updateData(_username2, _bio2, password, newPassword);
     showSnackBar('Change has been saved!', context);
-    Navigator.pop(context);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const ResponsiveLayout(
+              webScreenLayout: WebLayout(),
+              mobileScreenLayout: MobileLayout(),
+            )));
   }
 
   void updateData(

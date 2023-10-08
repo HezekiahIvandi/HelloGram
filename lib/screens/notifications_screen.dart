@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_uts/model/user.dart';
+import 'package:project_uts/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:project_uts/widgets/notif_get.dart';
 import 'package:project_uts/utils/colors.dart';
@@ -7,10 +9,12 @@ class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
   void addNewNotification(BuildContext context) {
     final notif = Provider.of<Notif>(context, listen: false);
+    final User? user =
+        Provider.of<UserProvider>(context, listen: false).getUser;
 
     final newNotification = {
-      'avatar': 'assets/img/muka.jpg',
-      'username': 'New User',
+      'avatar': user?.photoUrl ?? "",
+      'username': user?.username ?? "",
       'content': 'liked your photo',
       'timestamp': 'Just now',
       'read': false,
