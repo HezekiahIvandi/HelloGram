@@ -244,10 +244,11 @@ class ChatMessage extends StatelessWidget {
 
 void addNewNotification(BuildContext context) {
   final notif = Provider.of<Notif>(context, listen: false);
+  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
 
   final newNotification = {
-    'avatar': 'assets/img/muka.jpg',
-    'username': 'Username1',
+    'avatar': user?.photoUrl ?? "",
+    'username': user?.username ?? "",
     'content': 'You got a new message',
     'timestamp': 'Just now',
     'read': false,

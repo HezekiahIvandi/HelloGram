@@ -52,9 +52,9 @@ class _ProfileState extends State<Profile> {
   }
 
   void selectImage() async {
-    Uint8List profilePic = await pickImage(ImageSource.gallery);
+    Uint8List? profilePic = await pickImage(ImageSource.gallery);
     String pfpUrl = await StorageMethods()
-        .uploadImageToStorage('profilePics', profilePic, false);
+        .uploadImageToStorage('profilePics', profilePic!, false);
     setState(() {
       _image = profilePic;
     });

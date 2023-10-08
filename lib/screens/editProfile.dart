@@ -77,12 +77,19 @@ class _editProfileState extends State<editProfile> {
   }
 
   void saveProfile() {
-    String _username2 = _usernameController.text;
-    String _bio2 = _bioController.text;
+    final model.User? user =
+        Provider.of<UserProvider>(context, listen: false).getUser;
+    String _username2 = user!.username;
+    String _bio2 = user.bio;
+    if (_usernameController.text.isNotEmpty) {
+      _username2 = _usernameController.text;
+    }
     // String _email2 = _emailController.text;
     String password = _passwordController.text;
     String newPassword = _newPasswordController.text;
     updateData(_username2, _bio2, password, newPassword);
+    showSnackBar('Change has been saved!', context);
+    Navigator.pop(context);
   }
 
   void updateData(
@@ -97,7 +104,6 @@ class _editProfileState extends State<editProfile> {
           (_) {
             //Success, do something
             print('Success to change password');
-            showSnackBar('Change has been saved!', context);
           },
         ).catchError(
           (error) {
@@ -154,15 +160,7 @@ class _editProfileState extends State<editProfile> {
           icon: const Icon(Icons.keyboard_arrow_left),
           color: whiteUI,
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ResponsiveLayout(
-                  webScreenLayout: WebLayout(),
-                  mobileScreenLayout: MobileLayout(),
-                ),
-              ),
-            );
+            Navigator.pop(context);
           },
         ),
       ),
@@ -252,7 +250,9 @@ class _editProfileState extends State<editProfile> {
                 children: [
                   //cancel
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
