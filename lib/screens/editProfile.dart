@@ -80,7 +80,7 @@ class _editProfileState extends State<editProfile> {
     final model.User? user =
         Provider.of<UserProvider>(context, listen: false).getUser;
     String _username2 = user!.username;
-    String _bio2 = user.bio;
+    String _bio2 = _bioController.text;
     if (_usernameController.text.isNotEmpty) {
       _username2 = _usernameController.text;
     }
