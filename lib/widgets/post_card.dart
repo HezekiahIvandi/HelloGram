@@ -118,6 +118,24 @@ class _PostCardState extends State<PostCard> {
               setState(() {
                 isLikeAnimating = true;
               });
+              ElegantNotification(
+                width: 360,
+                height: 50,
+                notificationPosition: NotificationPosition.topCenter,
+                animation: AnimationType.fromTop,
+                background: mobileBackgroundColor,
+                description: Text(
+                  '${user!.username} liked your post',
+                  style: const TextStyle(color: whiteUI),
+                ),
+                icon: const Icon(
+                  Icons.favorite,
+                  color: redUI,
+                ),
+                showProgressIndicator: false,
+                onDismiss: () {},
+              ).show(context);
+              addNewNotification(context);
             },
             child: Stack(
               alignment: Alignment.center,
@@ -127,7 +145,7 @@ class _PostCardState extends State<PostCard> {
                   width: double.infinity,
                   child: Image(
                     image: NetworkImage(
-                      widget.snap['photoUrl'],
+                      widget.snap["photoUrl"],
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -174,9 +192,9 @@ class _PostCardState extends State<PostCard> {
                       notificationPosition: NotificationPosition.topCenter,
                       animation: AnimationType.fromTop,
                       background: mobileBackgroundColor,
-                      description: const Text(
-                        'Username1 liked your post',
-                        style: TextStyle(color: whiteUI),
+                      description: Text(
+                        '${user!.username} liked your post',
+                        style: const TextStyle(color: whiteUI),
                       ),
                       icon: const Icon(
                         Icons.favorite,
@@ -340,10 +358,10 @@ class _PostCardState extends State<PostCard> {
 
 void addNewNotification(BuildContext context) {
   final notif = Provider.of<Notif>(context, listen: false);
-
+  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
   final newNotification = {
-    'avatar': 'assets/img/muka.jpg',
-    'username': 'Username1',
+    'avatar': user?.photoUrl ?? "",
+    'username': user?.username ?? "",
     'content': 'liked your post',
     'timestamp': 'Just now',
     'read': false,
