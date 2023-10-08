@@ -39,7 +39,8 @@ class AuthMethods {
           uid: cred.user!.uid,
           email: email,
           bio: bio,
-          photoUrl: '',
+          photoUrl:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZCGFDrC8YeednlJC3mhxPfg_s4Pg8u7-kf6dy88&s',
           followers: [],
           following: [],
         );
