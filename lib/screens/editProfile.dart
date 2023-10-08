@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:typed_data';
 import 'package:project_uts/utils/utils.dart';
 import 'package:project_uts/resources/storage_methods.dart';
-import 'package:project_uts/utils/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:project_uts/model/user.dart' as model;
 import 'package:project_uts/provider/user_provider.dart';
@@ -96,7 +95,7 @@ class _editProfileState extends State<editProfile> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -104,7 +103,7 @@ class _editProfileState extends State<editProfile> {
           child: ListView(
             children: [
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
 
@@ -133,7 +132,7 @@ class _editProfileState extends State<editProfile> {
               ),
 
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
 
@@ -147,7 +146,7 @@ class _editProfileState extends State<editProfile> {
 
               //spacing
 
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               Row(
@@ -156,8 +155,8 @@ class _editProfileState extends State<editProfile> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 10),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
@@ -166,7 +165,7 @@ class _editProfileState extends State<editProfile> {
                         ),
                         color: blueUI,
                       ),
-                      child: Text(
+                      child: const Text(
                         "CANCEL",
                         style: TextStyle(
                           fontSize: 14,
@@ -179,8 +178,8 @@ class _editProfileState extends State<editProfile> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 10),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
@@ -189,7 +188,7 @@ class _editProfileState extends State<editProfile> {
                         ),
                         color: greenUI,
                       ),
-                      child: Text(
+                      child: const Text(
                         "SAVE",
                         style: TextStyle(
                           fontSize: 14,
@@ -222,17 +221,17 @@ class _editProfileState extends State<editProfile> {
                         showPassword = !showPassword;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.remove_red_eye,
                       color: Colors.grey,
                     ),
                   )
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
+            contentPadding: const EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
               color: lightGreyUI,

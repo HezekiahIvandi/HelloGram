@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:project_uts/responsive/mobile_layout.dart';
 import 'package:project_uts/responsive/renponsive_layout.dart';
 import 'package:project_uts/responsive/web_layout.dart';
-import 'package:project_uts/screens/chatscreen.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/dmlist_card.dart';
 

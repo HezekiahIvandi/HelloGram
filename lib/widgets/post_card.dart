@@ -203,7 +203,7 @@ class _PostCardState extends State<PostCard> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CommentScreen(),
+                      builder: (context) => CommentScreen(snap: widget.snap),
                     ),
                   );
                 },

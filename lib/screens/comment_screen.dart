@@ -1,17 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_uts/model/user.dart';
+import 'package:project_uts/provider/user_provider.dart';
+import 'package:project_uts/resources/firestore_methods.dart';
 import 'package:project_uts/utils/colors.dart';
 import 'package:project_uts/widgets/comment_card.dart';
+import 'package:provider/provider.dart';
 
 class CommentScreen extends StatefulWidget {
-  const CommentScreen({super.key});
+  final snap;
+  const CommentScreen({super.key, required this.snap});
 
   @override
   State<CommentScreen> createState() => _CommentScreenState();
 }
 
 class _CommentScreenState extends State<CommentScreen> {
+  final TextEditingController _commentController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _commentController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final User? user = Provider.of<UserProvider>(context).getUser;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
@@ -32,12 +48,31 @@ class _CommentScreenState extends State<CommentScreen> {
         ),
       ),
       backgroundColor: mobileBackgroundColor,
-      body: ListView(
-        children: const [
-          CommentCard(),
-          CommentCard(),
-          CommentCard(),
-        ],
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .doc(widget.snap["postId"])
+            .collection("comments")
+            .orderBy(
+              'datePublished',
+              descending: true,
+            )
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: lightGreyUI,
+              ),
+            );
+          }
+
+          return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) => CommentCard(
+                    snap: snapshot.data!.docs[index].data(),
+                  ));
+        },
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
@@ -51,29 +86,41 @@ class _CommentScreenState extends State<CommentScreen> {
           ),
           child: Row(
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage('assets/img/muka.jpg'),
+              CircleAvatar(
+                backgroundImage: NetworkImage(user?.photoUrl ?? ""),
                 radius: 18,
               ),
-              const Expanded(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 16, right: 8),
+                  padding: const EdgeInsets.only(left: 16, right: 8),
                   child: TextField(
+                    controller: _commentController,
                     decoration: InputDecoration(
-                      hintText: 'Comment as username',
+                      hintText: 'Comment as ${user?.username ?? ""}',
                       border: InputBorder.none,
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: lightGreyUI,
                       ),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: whiteUI,
                     ),
                   ),
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await FireStoreMethods().postComment(
+                    widget.snap["postId"],
+                    _commentController.text,
+                    user!.uid,
+                    user.username,
+                    user.photoUrl,
+                  );
+                  setState(() {
+                    _commentController.text = "";
+                  });
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,

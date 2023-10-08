@@ -1,8 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:project_uts/screens/editProfile.dart';
@@ -151,17 +149,17 @@ class _ProfileState extends State<Profile> {
                         children: [
                           Text(
                             _username,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Text(
                             _email,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               color: lightGreyUI,
                             ),
@@ -182,12 +180,12 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Text(
                               followers.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 25,
                                 color: blueUI,
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Followers',
                               style: TextStyle(
                                 color: aquaUI,
@@ -196,19 +194,19 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         Column(
                           children: [
                             Text(
                               following.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 25,
                                 color: blueUI,
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Following',
                               style: TextStyle(
                                 color: purpleUI,

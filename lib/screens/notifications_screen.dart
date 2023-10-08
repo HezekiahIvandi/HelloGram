@@ -69,11 +69,11 @@ class _NotificationsScreenState extends State<NotificationScreen> {
             trailing: IconButton(
               icon: isRead
                   ? const Icon(
-                      Icons.mark_email_unread_outlined,
+                      Icons.mark_email_read,
                       color: purpleUI,
                     )
                   : const Icon(
-                      Icons.mark_email_read,
+                      Icons.mark_email_unread_outlined,
                       color: purpleUI,
                     ),
               onPressed: () {

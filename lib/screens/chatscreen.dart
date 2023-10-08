@@ -168,7 +168,7 @@ class ChatScreenState extends State<ChatScreen> {
 
 class ChatMessage extends StatelessWidget {
   const ChatMessage({
-    Key? key,
+    super.key,
     required this.text,
     required this.isSent,
     this.image,

@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:project_uts/model/post.dart';
 import 'package:project_uts/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
@@ -52,6 +51,32 @@ class FireStoreMethods {
         _firestore.collection('posts').doc(postId).update({
           "likes": FieldValue.arrayUnion([uid]),
         });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> postComment(String postId, String text, String uid,
+      String username, String profImage) async {
+    try {
+      if (text.isNotEmpty) {
+        String commentId = const Uuid().v1();
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .set({
+          "username": username,
+          "uid": uid,
+          "text": text,
+          "profImage": profImage,
+          "commentId": commentId,
+          "datePublished": DateTime.now(),
+        });
+      } else {
+        print("Text is empty");
       }
     } catch (e) {
       print(e.toString());
