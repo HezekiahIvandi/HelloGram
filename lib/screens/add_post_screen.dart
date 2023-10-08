@@ -174,10 +174,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     children: [
                       Container(
                         padding: const EdgeInsets.only(left: 12),
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(
-                              'https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
+                          backgroundImage: NetworkImage(user!.photoUrl),
                         ),
                       ),
                       SizedBox(

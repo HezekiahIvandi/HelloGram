@@ -71,7 +71,7 @@ class _DMFriendListState extends State<DMFriendList> {
             ),
           ),
           const Divider(
-            color: purpleUI,
+            color: lightGreyUI,
             thickness: 4,
           ),
           const SizedBox(

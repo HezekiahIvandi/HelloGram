@@ -71,8 +71,14 @@ class _SignUpState extends State<SignUp> {
               ),
 
               //spacing
+              const Flexible(
+                child: SizedBox(
+                  height: 20,
+                ),
+              ),
+
               const SizedBox(
-                height: 32,
+                height: 12,
               ),
 
               //textfield username
@@ -108,8 +114,10 @@ class _SignUpState extends State<SignUp> {
               ),
 
               //spacing
-              const SizedBox(
-                height: 18,
+              const Flexible(
+                child: SizedBox(
+                  height: 18,
+                ),
               ),
 
               //sign up  button
