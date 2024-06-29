@@ -1,9 +1,9 @@
-HelloGram
+# HelloGram
 
-Tugas Mobile Programing (instagram like)
+## Tugas Mobile Programing (instagram like)
 
-Anggota Kelompok
-
+### Anggota Kelompok
+```
 535220011 Devin Saputra Wijaya
 
 535220009 Jonathan Putra Gunawan
@@ -16,3 +16,4 @@ Anggota Kelompok
 
 535220024 Albert
 
+```
