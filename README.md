@@ -1,8 +1,30 @@
 # HelloGram
+HelloGram is an Instagram-like mobile application built using Flutter and Firebase. The app allows users to share photos, follow other users, and engage with content through likes and comments.
 
-## Tugas Mobile Programing (instagram like)
+## Installation
+**Clone the repository:**
+```
+git clone https://github.com/your-username/hellogram.git
+cd hellogram
+```
 
-### Anggota Kelompok
+**Install dependencies:**
+```
+flutter pub get
+```
+
+**Set up Firebase:**
+- Create a new Firebase project in the Firebase Console.
+- Enable Firebase Authentication, Firestore, and Storage.
+- Download the google-services.json (for Android) and GoogleService-Info.plist (for iOS) files, and place them in the appropriate directories.
+- Update the firebase_options.dart file with your Firebase project configuration.
+  
+**Run the app:**
+```
+flutter run
+```
+
+## Anggota Kelompok
 ```
 535220011 Devin Saputra Wijaya
 
